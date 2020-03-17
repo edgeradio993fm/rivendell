@@ -1,12 +1,12 @@
-## Rivendell Radio Automation for Raspberry Pi Hardware
+### Rivendell Radio Automation for Raspberry Pi Hardware
 
-Welcome to the github for the Rivendell on Raspberry Pi project. This release has no affiliation with the official Rivendell software. We aim to provide a stable release for those who wish to use the software on Raspberry Pi hardware. We will be merging much of the official code as possible. This repository's changes will be based on running the system reliably on the Raspberry Pi hardware and the official Raspbian distribution. The packages and images we provide come with no guarenteed or warranty. They are provide as is.
+Welcome to the github for the Rivendell on Raspberry Pi project. This release has no affiliation with the official Rivendell software. We aim to provide a stable release for those who wish to use the software on Raspberry Pi hardware. We will be merging as much of the official code as possible. This repository's changes will be based on running the system reliably on the Raspberry Pi hardware and the official Raspbian distribution. The packages and images are provided as is and come with no guarenteed or warranty.
 
-Please see the releases page for the latest Debian update packages.
+Please see the [releases](https://github.com/edgeradio993fm/rivendell/releases) page for the latest images and update packages.
 
 ***
 
-## This is the README for the Rivendell package.
+### This is the README for the Rivendell package.
 
 This software comes with ABSOLUTELY NO WARRANTY. See the file COPYING for
 details.
