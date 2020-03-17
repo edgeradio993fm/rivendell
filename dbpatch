@@ -1,0 +1,22 @@
+diff --git a/utils/rddbmgr/updateschema.cpp b/utils/rddbmgr/updateschema.cpp
+index 9089bec0..cdd045de 100644
+--- a/utils/rddbmgr/updateschema.cpp
++++ b/utils/rddbmgr/updateschema.cpp
+@@ -9793,12 +9793,12 @@ bool MainObject::UpdateSchema(int cur_schema,int set_schema,QString *err_msg)
+     }
+
+     sql=QString("create table if not exists NEXUS_STATIONS (")+
+-      "STATION varchar(255) not null,"+
+-      "CATEGORY varchar(10) not null,"+
++      "STATION varchar(255) NOT NULL DEFAULT '',"+
++      "CATEGORY varchar(10) NOT NULL DEFAULT '',"+
+       "AUTO_MERGE enum('N','Y') default 'N',"+
+-      "RD_SERVICE varchar(10) not null,"+
+-      "RD_GROUP_NAME varchar(10) not null,"+
+-      "RD_SCHED_CODE varchar(11) not null)"+
++      "RD_SERVICE varchar(10) NOT NULL DEFAULT '',"+
++      "RD_GROUP_NAME varchar(10) NOT NULL DEFAULT '',"+
++      "RD_SCHED_CODE varchar(11) NOT NULL DEFAULT '')"+
+       " charset utf8mb4 collate utf8mb4_general_ci"+
+       db_table_create_postfix;
+     if(!RDSqlQuery::apply(sql,err_msg)) {
