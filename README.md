@@ -4,6 +4,17 @@ Welcome to the github for the Rivendell on Raspberry Pi project. This release ha
 
 Please see the [releases](https://github.com/edgeradio993fm/rivendell/releases) page for the latest images and update packages.
 
+#### If you would like to get updates via the APT package manager
+
+Run this command to download and install the repo GPG Key.
+```bash
+wget -qO - https://7edg.org/repo/rivendellpi.key | sudo apt-key add -
+```
+Edit your /etc/apt/sources.list file and add this line at the bottom.
+```bash
+deb https://7edg.org/repo buster main
+```
+
 ***
 
 ### This is the README for the Rivendell package.
