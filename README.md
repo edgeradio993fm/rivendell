@@ -14,23 +14,25 @@ Edit your /etc/apt/sources.list file and add this line at the bottom.
 ```bash
 deb https://7edg.org/repo buster main
 ```
+We do not recommend installing Rivendell directly from our repository as you will have to manually set a number of configuration options such as the mysql database and audio storage. Use the below automated install to do the initial setup and then update your Rivendell install using **sudo apt update** when required.
 ***
 
-### Installing Rivendell on a New System Using the Respository
+### Installing Rivendell From Scratch
 
-Installing a fresh copy of Rivendell on a Raspbian system without it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi system. This will also install the required dependancies to build Rivendell from source.
+Installing a fresh copy of Rivendell with a blank database on a Raspbian system without it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi (armhf) and Debian (amd64) based systems. This will also install the required dependancies to build Rivendell from source.
 
 Run this command in a terminal to start the automated install process.
 ```bash
 curl -L https://7edg.org/rdinstall/install.sh | sudo bash
 ```
+Post install you should run **rdalsaconfig** (run from terminal using sudo) to configure your soundcard and **rdadmin** to configure your host settings.
 ***
 
 ### A Quick Note For Those Running Debian Based Distributions
 
-This forked repo will compile and run just fine on x86-64 based Debian systems. We've been considering adding x86-64 packages to our repository. If you're keen to get pre-compiled update packages for your x86-64 based Debian system please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
+This forked repo will compile and run fine on other Debian based systems. We've have added an amd64 package to our repository for Debian Buster. You can install it using the above method. While it has been sucsessfully tested on our end, there may still be a few bugs. Please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
 
-We've not tested if the code compiles on Ubuntu.
+We've not tested if the code compiles or runs on Ubuntu.
 ***
 
 ### This is the README for the Rivendell package.
