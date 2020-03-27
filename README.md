@@ -21,6 +21,16 @@ This forked repo will compile and run just fine on x86-64 based Debian systems. 
 We've not tested if the code compiles on Ubuntu.
 
 ***
+### Installing Rivendell on a New System Using the Respository
+
+Installing a fresh copy of Rivendell on a Raspbian system without it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi system. This will also install the required dependancies to build Rivendell from source.
+
+Run this command in a terminal to start the automated install process.
+```bash
+curl -L https://7edg.org/rdinstall/install.sh | sudo bash
+```
+
+***
 
 ### This is the README for the Rivendell package.
 
