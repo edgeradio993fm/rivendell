@@ -19,7 +19,7 @@ We do not recommend installing Rivendell directly from our repository as you wil
 
 ### Installing Rivendell From Scratch
 
-Installing a fresh copy of Rivendell with a blank database on a Raspbian system without it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi (armhf) and Debian (amd64) based systems. This will also install the required dependancies to build Rivendell from source.
+Installing a fresh copy of Rivendell with a blank database on a Raspbian system it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi (armhf) and Debian (amd64) based systems. This will also install the required dependancies to build Rivendell from source.
 
 Run this command in a terminal to start the automated install process.
 ```bash
