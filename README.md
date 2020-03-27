@@ -14,13 +14,8 @@ Edit your /etc/apt/sources.list file and add this line at the bottom.
 ```bash
 deb https://7edg.org/repo buster main
 ```
-### A Quick Note For Those Running Debian Based Distributions
-
-This forked repo will compile and run just fine on x86-64 based Debian systems. We've been considering adding x86-64 packages to our repository. If you're keen to get pre-compiled update packages for your x86-64 based Debian system please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
-
-We've not tested if the code compiles on Ubuntu.
-
 ***
+
 ### Installing Rivendell on a New System Using the Respository
 
 Installing a fresh copy of Rivendell on a Raspbian system without it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi system. This will also install the required dependancies to build Rivendell from source.
@@ -29,7 +24,13 @@ Run this command in a terminal to start the automated install process.
 ```bash
 curl -L https://7edg.org/rdinstall/install.sh | sudo bash
 ```
+***
 
+### A Quick Note For Those Running Debian Based Distributions
+
+This forked repo will compile and run just fine on x86-64 based Debian systems. We've been considering adding x86-64 packages to our repository. If you're keen to get pre-compiled update packages for your x86-64 based Debian system please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
+
+We've not tested if the code compiles on Ubuntu.
 ***
 
 ### This is the README for the Rivendell package.
