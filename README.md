@@ -19,13 +19,13 @@ We do not recommend installing Rivendell directly from our repository as you wil
 
 ### Installing Rivendell From Scratch
 
-Installing a fresh copy of Rivendell with a blank database on a Raspbian system it isn't too hard. We have made an automated install script that will install Rivendell install on a Rasbian Raspberry Pi (armhf) and Debian (amd64) based systems. This will also install the required dependancies to build Rivendell from source.
+Installing a fresh copy of Rivendell with a blank database on a Raspbian system it isn't too hard. We have made an automated install script that will install Rivendell on a Rasbian Raspberry Pi (armhf) and Debian (amd64) based systems for the current sudo user, configure audio storage and set up a blank database. This will also install the required dependancies to build Rivendell from source should the need occour. This process will also install our repository for future updates and the [Debian Multimeida Packages]( https://deb-multimedia.org) repository, as some required audio codecs are no longer included in Debian Buster by default.
 
 Run this command in a terminal to start the automated install process.
 ```bash
 curl -L https://7edg.org/rdinstall/install.sh | sudo bash
 ```
-Post install you should run **rdalsaconfig** (run from terminal using sudo) to configure your soundcard and **rdadmin** to configure your host settings.
+Post install you should run **rdadmin** to generate/configure your host settings.
 ***
 
 ### A Quick Note For Those Running Debian Based Distributions
