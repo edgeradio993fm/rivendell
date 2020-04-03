@@ -30,11 +30,15 @@ curl -L https://7edg.org/rdinstall/install.sh | sudo bash
 Post install you should run **rdadmin** to generate/configure your host settings.
 ***
 
-### A Quick Note For Those Running Debian Based Distributions
+### A Quick Note For Those Running Debian and Ubuntu Based Distributions
 
-This forked repo will compile and run fine on other Debian based systems. We've have added an amd64 package to our repository for Debian Buster. You can install it using the above method. While it has been sucsessfully tested on our end, there may still be a few bugs. Please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
+**Debian**  
+This forked repo will compile and run fine on other Debian based systems. We've have added an amd64 package to our repository for Debian Buster. You can install it using the above method. While it has been sucsessfully tested on our end, there may still be a few bugs. 
 
-We've not tested if the code compiles or runs on Ubuntu.
+**Ubuntu**  
+There is no support for Ubuntu based systems and the install process will fail. You can get things to work by adding the Debian Repositories to your Ubuntu system. However, this is very much not recommended.
+
+If you have any feedback or encounter bugs, please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
 ***
 
 ### This is the README for the Rivendell package.
