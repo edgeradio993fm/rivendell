@@ -69,6 +69,9 @@ uninstall-local:
 	rm -f $(DESTDIR)/etc/pam.d/rddbconfig-root
 	rm -f $(DESTDIR)/etc/security/console.apps/rddbconfig-root
 	rm -f $(DESTDIR)$(prefix)/bin/rddbconfig-root
+	
+	rm -f /usr/share/polkit-1/actions/org.freedesktop.policykit.rdalsaconfig.policy
+	rm -f /usr/share/polkit-1/actions/org.freedesktop.policykit.rddbconfig.policy
 
 EXTRA_DIST = rdalsaconfig-root-consolehelper.in\
              rdalsaconfig-root-pam\

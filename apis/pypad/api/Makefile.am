@@ -23,6 +23,14 @@
 rivendelldir = $(pyexecdir)
 rivendell_PYTHON = pypad.py
 
+install-exec-am:
+	cp pypad.py /usr/local/lib/rivendell/pypad/ 2>/dev/null || :
+	cp pypad.py /usr/local/lib64/rivendell/pypad/ 2>/dev/null || :
+
+uninstall-local:
+	rm -f /usr/local/lib/rivendell/pypad/pypad.py 2>/dev/null || :
+	rm -f /usr/local/lib64/rivendell/pypad/pypad.py 2>/dev/null || :
+
 CLEANFILES = *~\
              *.idb\
              *ilk\
