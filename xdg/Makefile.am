@@ -38,6 +38,9 @@ install-exec-am:
 	cp rivendell-rdsoftkeys.desktop $(DESTDIR)@prefix@/share/applications/
 	cp rivendell-rmlsend.desktop $(DESTDIR)@prefix@/share/applications/
 
+	cp org.freedesktop.policykit.rdalsaconfig.policy /usr/share/polkit-1/actions/
+	cp org.freedesktop.policykit.rddbconfig.policy /usr/share/polkit-1/actions/
+
 	mkdir -p $(DESTDIR)@prefix@/share/desktop-directories
 	cp *.directory $(DESTDIR)@prefix@/share/desktop-directories/
 	mkdir -p $(DESTDIR)/etc/xdg/menus/applications-merged
