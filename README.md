@@ -10,11 +10,11 @@ Run this command to download and install the repo GPG Key.
 ```bash
 wget -qO - https://7edg.org/repo/rivendellpi.key | sudo apt-key add -
 ```
-Edit your /etc/apt/sources.list file and add this line at the bottom.
+Run this command to add our repository to your /ect/apt/sources.list file.
 ```bash
-deb https://7edg.org/repo buster main
+sudo echo "deb https://7edg.org/repo buster main" | sudo tee -a /etc/apt/sources.list
 ```
-We do not recommend installing Rivendell directly from our repository as you will have to manually set a number of configuration options such as the mysql database and audio storage. Use the below automated install to do the initial setup and then update your Rivendell install using **sudo apt update** when required.
+We do not recommend installing Rivendell directly from our repository as you will have to manually set a number of configuration options such as the mysql database and audio storage. Use the below automated install to do the initial setup and then update your Rivendell install using **sudo apt update -y && sudo apt upgrade rivendell -y** when required.
 ***
 
 ### Installing Rivendell From Scratch
