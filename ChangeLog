@@ -19749,3 +19749,27 @@
 	* Fixed a regression in rdairplay(1) that caused two events to be
 	started by a single spacebar tap if a SoundPanel event had been
 	played previously.
+2020-04-08 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdlogmanager(1) that caused the initial event
+	in an imported set to fail receive the proper time and transition
+	type if the 'Include Import Markers in Finished Logs' checkbox in
+	rdadmin(1) had not been ticked.
+2020-04-08 David Klann <dklann@linux.com>
+	* Fixed a regression in rdexport(1) that caused exported file
+	names to be constructed improperly.
+2020-04-08 Patrick Linstruth <patrick@deltecent.com>
+	* Fixed a bug in rdlogmanager(1) that caused 'Make Post Point'
+	label to be displayed without last 't'.
+2020-04-08 Patrick Linstruth <patrick@deltecent.com>
+	* Fixed a bug in rdairplay(1) with HourSelector::updateTimeData()
+	where timer was not set properly when crossing midnight.
+2020-04-08 Patrick Linstruth <patrick@deltecent.com>
+	* Modified rdairplay(1) to always scroll log to the top when using
+	the hour selector.
+2020-04-08 Patrick Linstruth <patrick@deltecent.com>
+	* Modified rdlogmanager(1) to disable merge buttons if the selected
+	log does not contain any import links.
+2020-04-08 Fred Gleason <fredg@paravelsystems.com>
+	* Changed the error message rendered when 'configure' fails to
+	detect one or more of the MusicBrainz dependencies to be less
+	ambiguous.
