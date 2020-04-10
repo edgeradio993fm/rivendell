@@ -19749,6 +19749,7 @@
 	* Fixed a regression in rdairplay(1) that caused two events to be
 	started by a single spacebar tap if a SoundPanel event had been
 	played previously.
+<<<<<<< HEAD
 2020-04-08 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in rdlogmanager(1) that caused the initial event
 	in an imported set to fail receive the proper time and transition
@@ -19773,3 +19774,11 @@
 	* Changed the error message rendered when 'configure' fails to
 	detect one or more of the MusicBrainz dependencies to be less
 	ambiguous.
+2020-04-08 Patrick Linstruth <patrick@deltecent.com>
+	* Modified rdadmin(1) Edit Service dialog to display built-in
+	traffic and music import template values.
+	* Added "Copy To Custom" buttons to rdadmin(1) Edit Service dialog.
+2020-04-08 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in the 'List GPIs' dialog in rdadmin(1) that
+	prevented changes in GPI assignments from being propagated
+	to the underlying device.
