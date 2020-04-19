@@ -19782,3 +19782,42 @@
 	* Fixed a bug in the 'List GPIs' dialog in rdadmin(1) that
 	prevented changes in GPI assignments from being propagated
 	to the underlying device.
+2020-04-13 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in the 'Software Authority' driver that caused
+	autodetection of the number of GPIOs in a router to be unreliable.
+	* Removed superfluous code from rdgpimon(1).
+2020-04-14 Fred Gleason <fredg@paravelsystems.com>
+	* Added debug syslog messages to the 'Software Authority' driver
+	in ripcd(8).
+2020-04-15 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a regression in 'RDEventLine' that caused the
+	'Append Log' ['AL'] RML to append a copy of the currently loaded
+	log instead of the one specified in the RML command
+2020-04-16 Fred Gleason <fredg@paravelsystems.com>
+	* Added font metrics methods for each standard font role in
+	'RDFontEngine'.
+	* Refactored the control layout in the 'Editing Event' dialog
+	in rdlogmanager.
+2020-04-16 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the 'EVENTS.POST_POINT' field from the database.
+	* Removed the 'LOG_LINES.POST_POINT' field from the database.
+	* Incremented the database version to 315.
+	* Removed 'RDEventLine::postPoint()' and
+	'RDEventLine::setPostPoint()' methods.
+	* Removed the 'Post Point' checkbox from the 'Editing Event' dialog
+	in rdlogmanager(1).
+2020-04-16 Fred Gleason <fredg@paravelsystems.com>
+	* Renamed the 'REMARKS' field to 'USER NOTES' in the 'Editing Event'
+	dialog in rdlogmanager(1).
+	* Renamed the 'REMARKS' field to 'USER NOTES' in the 'Edit Clock'
+	dialog in rdlogmanager(1).
+2020-04-18 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the 'EVENTS.PROPERTIES' field from the database.
+	* Incremented the database version to 316.
+	* Removed the 'RDEventLine::properties()' and
+	'RDEventLine::setProperties()' methods.
+	* Added 'RDEventLine::propertiesText()' methods.
+	* Added a 'Trans' column to the event list in the 'Edit Clock'
+	dialog in rdlogmanager(1).
+	* Added a 'Trans' column to the event list in the 'List Events'
+	dialog in rdlogmanager(1).

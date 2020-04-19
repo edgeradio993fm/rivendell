@@ -9903,6 +9903,21 @@ bool MainObject::UpdateSchema(int cur_schema,int set_schema,QString *err_msg)
     WriteSchemaVersion(++cur_schema);
   }
 
+  if((cur_schema<315)&&(set_schema>cur_schema)) {
+    DropColumn("EVENTS","POST_POINT");
+    DropColumn("LOG_LINES","POST_POINT");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<316)&&(set_schema>cur_schema)) {
+    DropColumn("EVENTS","PROPERTIES");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+
+
 
   // NEW SCHEMA UPDATES GO HERE...
 
