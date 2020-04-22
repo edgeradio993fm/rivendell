@@ -41,6 +41,12 @@ There is no support for Ubuntu based systems and the install process will fail. 
 If you have any feedback or encounter bugs, please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
 ***
 
+### Let Us Know If You Use Rivendell On Your Raspberry Pi
+If you find using Rivendell on your Raspberry Pi is working for you, please let us know via email. We're keen to complile a list of stations that run Pi based Rivendell systems. Doesn't matter if you only use them as workstations or full on setups. Drop us a line and share your experence.
+
+[tech@edgeradio.org.au](mailto:tech@edgeradio.org.au)
+***
+
 ### This is the README for the Rivendell package.
 
 This software comes with ABSOLUTELY NO WARRANTY. See the file COPYING for
