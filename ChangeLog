@@ -19245,7 +19245,6 @@
 	* Added an rdsoftkeys(1) man page.
 2019-10-31 Fred Gleason <fredg@paravelsystems.com>
 	* Incremented the package version to 3.2.0.
-<<<<<<< HEAD
 2019-11-20 Fred Gleason <fredg@paravelsystems.com>
 	* Added interlocks to the 'Edit Switcher' and 'Edit Serial Ports'
 	dialogs in rdadmin(1) to prohibit use of a disabled serial device.
@@ -19458,6 +19457,7 @@
 	class.
 	* Added a 'CUTS.RECORDING_MBID' field to the database.
 	* Added a 'CUTS.RELEASE_MBID' field to the database.
+	* Incremented the database version to 313.
 2020-02-01 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'MusicBrainz' CD metadata lookup method in 'RDMbLookup'.
 2020-02-01 Fred Gleason <fredg@paravelsystems.com>
@@ -19749,7 +19749,6 @@
 	* Fixed a regression in rdairplay(1) that caused two events to be
 	started by a single spacebar tap if a SoundPanel event had been
 	played previously.
-<<<<<<< HEAD
 2020-04-08 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in rdlogmanager(1) that caused the initial event
 	in an imported set to fail receive the proper time and transition
@@ -19821,3 +19820,33 @@
 	dialog in rdlogmanager(1).
 	* Added a 'Trans' column to the event list in the 'List Events'
 	dialog in rdlogmanager(1).
+2020-04-20 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdlogedit(1) that caused garbled text to appear
+	when 'Start Immediately' was selected in the 'Edit Log Entry'
+	dialog box.
+2020-04-27 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.3.0int0.
+2020-05-02 Fred Gleason <fredg@paravelsystems.com>
+	* Added a'STACK_LINES_ID_IDX' index to the 'STACK_SCHED_CODES'
+	table in the database.
+	* Incremented the database version to 317.
+	* Cleaned up SQL generation in rdmaint(8).
+2020-05-02 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.3.0int1.
+2020-05-12 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a regression that broke the ability to scroll through
+	Sound Panel panels by means of the mouse wheel.
+2020-05-19 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.0.
+2020-05-22 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'RDListView::NumericSort' to the 'RDListView::SortType'
+	enumeration.
+	* Fixed a bug in rdlibrary(1) that caused cuts to be incorrectly
+	sorted when scheduled 'By Specified Order'.
+2020-05-23 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'cmdline_parser_test' test harness.
+	* Fixed a bug in 'RDCmdSwitch' that caused value-only arguments
+	containing '=' characters to be incorrectly parsed.
+2020-05-23 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'RDFormPost' that caused an error when processing
+	multipart-mime submissions containing '=' characters.
