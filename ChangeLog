@@ -19920,3 +19920,29 @@
 	* Incremented the package version to 3.4.0int1.
 2020-07-21 Fred Gleason <fredg@paravelsystems.com>
 	* Incremented the package version to 3.4.1.
+2020-08-05 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDDataPacer' class.
+	* Modified the GVC7000 switcher driver to insert 50 mS pauses
+	between protocol commands.
+2020-08-05 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int0.
+2020-08-05 David Klann <dklann@linux.com>
+	* Correct the column settings in rdadmin/list_dropboxes.cpp.
+2020-08-05 David Klann <dklann@linux.com>
+	* Remove "Qt::AlignVCenter|" from User Defined.
+2020-08-05 Patrick Linstruth <patrick@deltecent.com>
+	* Fixed regression with "Scheduler Code:" label overlapping "Group"
+	combobox in rdlibrary(1).
+2020-06-23 Fred Gleason <fredg@paravelsystems.com>
+	* Applied the RD_MAX_CART_NUMBER define in
+	'rdairplay/local_macros.cpp'.
+2020-08-10 Brian McGlynn <bmcglynn@geneseemedia.net>
+	* Allow RN Macro to run when Rivendell daemons running as non-root
+	'ripcd/local_macros.cpp'.
+2020-08-10 Fred Gleason <fredg@paravelsystems.com>
+	* Documented the '%%' filepath wildcard in the Operations Guide.
+2020-08-10 Fred Gleason <fredg@paravelsystems.com>
+	* Added a check in 'RDSvc::create()' to disallow creation of a
+	service with a name containing whitespace.
+	* Added whitespace to the set of banned characters for service names
+	in the 'Add Service' dialog in rdadmin(1).
