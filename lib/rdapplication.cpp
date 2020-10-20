@@ -191,6 +191,7 @@ bool RDApplication::open(QString *err_msg,RDApplication::ErrorType *err_type,
   //
   app_station=new RDStation(app_config->stationName());
   app_system=new RDSystem();
+  app_schemas=new RDRssSchemas();
   app_library_conf=new RDLibraryConf(app_config->stationName());
   app_logedit_conf=new RDLogeditConf(app_config->stationName());
   app_airplay_conf=new RDAirPlayConf(app_config->stationName(),"RDAIRPLAY");
@@ -262,6 +263,12 @@ RDRipc *RDApplication::ripc()
 }
 
 
+RDRssSchemas *RDApplication::rssSchemas()
+{
+  return app_schemas;
+}
+
+
 RDStation *RDApplication::station()
 {
   return app_station;
@@ -302,6 +309,21 @@ bool RDApplication::dropTable(const QString &tbl_name)
 void RDApplication::addTempFile(const QString &pathname)
 {
   __rdapplication_temp_files.push_back(pathname);
+}
+
+
+void RDApplication::logAuthenticationFailure(const QHostAddress &orig_addr,
+					     const QString &login_name)
+{
+  if(login_name.isEmpty()) {
+    syslog(LOG_NOTICE,"failed WebAPI login from %s",
+	   orig_addr.toString().toUtf8().constData());
+  }
+  else {
+    syslog(LOG_NOTICE,"failed WebAPI login from %s for user \"%s\"",
+	   orig_addr.toString().toUtf8().constData(),
+	   login_name.toUtf8().constData());
+  }
 }
 
 

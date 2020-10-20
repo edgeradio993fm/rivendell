@@ -239,7 +239,7 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   // Traffic Import Section
   //
   label=new QLabel(tr("Traffic Data Import"),this);
-  label->setGeometry(10,213,160,24);
+  label->setGeometry(10,210,160,24);
   label->setFont(sectionLabelFont());
   label->setAlignment(Qt::AlignLeft);
 
@@ -248,7 +248,7 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   //
   svc_tfc_path_edit=new QLineEdit(this);
   svc_tfc_path_edit->setGeometry(185,234,240,19);
-  svc_tfc_path_edit->setMaxLength(255);
+  svc_tfc_path_edit->setMaxLength(191);
   svc_tfc_path_edit->setValidator(validator);
   label=new QLabel(svc_tfc_path_edit,tr("Import Path:"),this);
   label->setGeometry(10,234,170,19);
@@ -342,7 +342,7 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   //
   svc_mus_path_edit=new QLineEdit(this);
   svc_mus_path_edit->setGeometry(620,234,240,19);
-  svc_mus_path_edit->setMaxLength(255);
+  svc_mus_path_edit->setMaxLength(191);
   svc_mus_path_edit->setValidator(validator);
   label=new QLabel(svc_mus_path_edit,tr("Import Path:"),this);
   label->setGeometry(450,234,165,19);
@@ -400,12 +400,26 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
 	  this,SLOT(textChangedData(const QString &)));
 
   //
+  // Inline Event Inheritance Log
+  //
+  svc_sub_event_inheritance_box=new QComboBox(this);
+  svc_sub_event_inheritance_box->setGeometry(620,339,240,19);
+  svc_sub_event_inheritance_box->
+    insertItem((int)RDSvc::ParentEvent,tr("From Parent RDLogManager Event"));
+  svc_sub_event_inheritance_box->
+    insertItem((int)RDSvc::SchedFile,tr("From Music Scheduler File"));
+  label=new QLabel(svc_sub_event_inheritance_box,
+		   tr("Inline Traffic Start/Length")+":",this);
+  label->setGeometry(450,339,165,19);
+  label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+
+  //
   // Music Import Template
   //
   svc_mus_import_template_box=new QComboBox(this);
-  svc_mus_import_template_box->setGeometry(620,339,240,19);
+  svc_mus_import_template_box->setGeometry(620,360,240,19);
   label=new QLabel(svc_mus_import_template_box,tr("Import Template:"),this);
-  label->setGeometry(450,339,165,19);
+  label->setGeometry(450,360,165,19);
   label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
   connect(svc_mus_import_template_box,SIGNAL(activated(int)),
 	  this,SLOT(musTemplateActivatedData(int)));
@@ -414,14 +428,14 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   // Music Parser Settings
   //
   svc_mus_fields=new ImportFields(this);
-  svc_mus_fields->setGeometry(445,360,svc_mus_fields->sizeHint().width(),
+  svc_mus_fields->setGeometry(445,381,svc_mus_fields->sizeHint().width(),
 			      svc_mus_fields->sizeHint().height());
 
   //
   // Music Test Button
   //
   button=new QPushButton(this);
-  button->setGeometry(795,360,60,40);
+  button->setGeometry(795,381,60,40);
   button->setFont(buttonFont());
   button->setText(tr("Test \n&Music"));
   connect(button,SIGNAL(clicked()),this,SLOT(musicData()));
@@ -430,7 +444,7 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   // Music Copy Button
   //
   svc_mus_copy_button=new QPushButton(this);
-  svc_mus_copy_button->setGeometry(795,410,60,40);
+  svc_mus_copy_button->setGeometry(795,431,60,40);
   svc_mus_copy_button->setFont(buttonFont());
   svc_mus_copy_button->setText(tr("Copy To\nCustom"));
   connect(svc_mus_copy_button,SIGNAL(clicked()),this,SLOT(musicCopyData()));
@@ -482,6 +496,8 @@ EditSvc::EditSvc(QString svc,QWidget *parent)
   svc_program_code_edit->setText(svc_svc->programCode());
   svc_name_template_edit->setText(svc_svc->nameTemplate());
   svc_description_template_edit->setText(svc_svc->descriptionTemplate());
+  svc_sub_event_inheritance_box->
+    setCurrentIndex((RDSvc::SubEventInheritance)svc_svc->subEventInheritance());
   svc_chain_box->setChecked(svc_svc->chainto());
   svc_autorefresh_box->setChecked(svc_svc->autoRefresh());
   if(svc_svc->defaultLogShelflife()>=0) {
@@ -548,7 +564,7 @@ EditSvc::~EditSvc()
 
 QSize EditSvc::sizeHint() const
 {
-  return QSize(870,670);
+  return QSize(870,691);
 } 
 
 
@@ -726,6 +742,8 @@ void EditSvc::Save()
   svc_svc->setProgramCode(svc_program_code_edit->text());
   svc_svc->setNameTemplate(svc_name_template_edit->text().stripWhiteSpace());
   svc_svc->setDescriptionTemplate(svc_description_template_edit->text());
+  svc_svc-> setSubEventInheritance((RDSvc::SubEventInheritance)
+			       svc_sub_event_inheritance_box->currentIndex());
   svc_svc->setChainto(svc_chain_box->isChecked());
   svc_svc->setAutoRefresh(svc_autorefresh_box->isChecked());
   if(svc_loglife_box->isChecked()) {

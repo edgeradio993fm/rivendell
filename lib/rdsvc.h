@@ -40,6 +40,7 @@ class RDSvc : public QObject
 		    Title=6,StartHours=7,StartMinutes=8,StartSeconds=9,
 		    LengthHours=10,LengthMinutes=11,LengthSeconds=12};
   enum ShelflifeOrigin {OriginAirDate=0,OriginCreationDate=1};
+  enum SubEventInheritance {ParentEvent=0,SchedFile=1};
   RDSvc(QString svcname,RDStation *station,RDConfig *config,QObject *parent=0);
   QString name() const;
   bool exists() const;
@@ -67,6 +68,8 @@ class RDSvc : public QObject
   void setIncludeImportMarkers(bool state);
   bool chainto() const;
   void setChainto(bool state) const;
+  SubEventInheritance subEventInheritance() const;
+  void setSubEventInheritance(SubEventInheritance inherit) const;
   QString importTemplate(ImportSource src) const;
   void setImportTemplate(ImportSource src,const QString &str) const;
   QString breakString() const;
@@ -117,6 +120,8 @@ class RDSvc : public QObject
   void GetParserStrings(ImportSource src,QString *break_str,QString *track_str,
 			QString *label_cart,QString *track_cart);
   bool CheckId(std::vector<int> *v,int value);
+  QString MakeErrorLine(int indent,unsigned lineno,const QString &msg) const;
+  bool ResolveInlineTrafficLinks(const QString &logname,QString *err_msg) const;
   QString svc_name;
   RDStation *svc_station;
   RDConfig *svc_config;

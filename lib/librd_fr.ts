@@ -776,7 +776,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>MARKER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TRACK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LOG CHAIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[cart not found]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[music link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[traffic link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>whitespace is not permitted in service names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>new profile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1554,26 +1586,6 @@ Are you sure you want to save?</source>
 <context>
     <name>RDExportSettingsDialog</name>
     <message>
-        <source>Edit Export Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Channels:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Sample Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Bitrate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Quality:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation type="unfinished">&amp;OK</translation>
     </message>
@@ -1701,6 +1713,58 @@ Are you sure you want to save?</source>
         <source>PCM24</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit Audio Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sample Rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normalization Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autotrim Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dBFS</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RDGetAth</name>
@@ -1758,6 +1822,13 @@ figure for the report period.
     <name>RDGpioSelector</name>
     <message>
         <source>Pin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RDImagePickerModel</name>
+    <message>
+        <source>Image</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2286,6 +2357,22 @@ please try again!</source>
     </message>
     <message>
         <source>Import failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid start time and/or length on inline traffic break.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>multiple inline traffic breaks not permitted within the same music event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In event</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

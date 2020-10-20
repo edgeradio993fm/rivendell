@@ -1,6 +1,6 @@
 // webget.js
 //
-//   (C) Copyright 2018 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -22,166 +22,83 @@ function Id(id)
 }
 
 
-function GetMpegVersion(samprate)
+function MakePost()
 {
-    mpeg_ver=1.0;
+    var sep=RD_MakeMimeSeparator();
+    form=sep+"\r\n";
 
-    switch(samprate) {
-    case 32000:
-    case 44100:
-    case 48000:
-	mpeg_ver=1.0;
-	break;
+    form+=RD_AddMimePart('title',Id('title').value,sep,false);
+    form+=RD_AddMimePart('preset',Id('preset').value,sep,false);
+    form+=RD_AddMimePart('LOGIN_NAME',Id('LOGIN_NAME').value,sep,false);
+    form+=RD_AddMimePart('PASSWORD',Id('PASSWORD').value,sep,true);
 
-    case 16000:
-    case 22050:
-    case 24000:
-	mpeg_ver=2.0;
-	break;
-
-    case 8000:
-    case 11025:
-    case 12000:
-	mpeg_ver=2.5;
-	break;
-    }
-    return mpeg_ver;
+    return form;
 }
 
 
-function SetLayerII()
+function ProcessOkButton()
 {
-    mpeg_ver=GetMpegVersion(parseInt(Id('samprate').value));
-    if(mpeg_ver==1.0) {
-	if(Id('channels').value=='1') {
-	    Id('bitrate').innerHTML=
-		'<option value="32000">32 kbit/sec</option>\n'+
-		'<option value="48000" selected>48 kbit/sec</option>\n'+
-		'<option value="56000">56 kbit/sec</option>\n'+
-		'<option value="64000">64 kbit/sec</option>\n'+
-		'<option value="80000">80 kbit/sec</option>\n'+
-		'<option value="96000">96 kbit/sec</option>\n'+
-		'<option value="112000">112 kbit/sec</option>\n'+
-		'<option value="128000">128 kbit/sec</option>\n'+
-		'<option value="160000">160 kbit/sec</option>\n'+
-		'<option value="192000">192 kbit/sec</option>\n';	
+    SendForm(MakePost(),"webget.cgi");
+}
+
+
+function SendForm(form,url)
+{
+    var http=RD_GetXMLHttpRequest();
+    if(http==null) {
+	return;
+    }
+
+    //
+    // Send the form
+    //
+    http.open("POST",url,true);
+    http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    http.responseType='blob';
+    http.send(form);
+
+    //
+    // Process the response
+    //
+    http.onload=function(e) {
+	if(this.status==200) {
+	    var blob=new Blob([this.response],
+			      {type: http.getResponseHeader('content-type')});
+	    let a=document.createElement('a');
+	    a.style='display: none';
+	    document.body.appendChild(a);
+	    let url=window.URL.createObjectURL(blob);
+	    a.href=url;
+	    a.download=Id('title').value+'.'+FileExtension(Id('preset').value);
+	    a.click();
+	    window.URL.revokeObjectURL(url);
 	}
 	else {
-	    Id('bitrate').innerHTML=
-		'<option value="32000">32 kbit/sec</option>\n'+
-		'<option value="48000" selected>48 kbit/sec</option>\n'+
-		'<option value="56000">56 kbit/sec</option>\n'+
-		'<option value="64000">64 kbit/sec</option>\n'+
-		'<option value="80000">80 kbit/sec</option>\n'+
-		'<option value="96000">96 kbit/sec</option>\n'+
-		'<option value="112000">112 kbit/sec</option>\n'+
-		'<option value="128000">128 kbit/sec</option>\n'+
-		'<option value="160000">160 kbit/sec</option>\n'+
-		'<option value="192000">192 kbit/sec</option>\n'+
-		'<option value="224000">224 kbit/sec</option>\n'+
-		'<option value="256000">256 kbit/sec</option>\n'+
-		'<option value="320000">320 kbit/sec</option>\n'+
-		'<option value="384000">384 kbit/sec</option>\n';
+	    if(this.status==401) {
+		alert('Invalid User Name or Password!');
+	    }
+	    else {
+		if(this.status=404) {
+		    alert('No cart with that name found!');
+		}
+		else {
+		    alert('Unable to access WebGet [response code: '+
+			  http.status+']!');
+		}
+	    }
 	}
     }
-    if(mpeg_ver==2.0) {
-	Id('bitrate').innerHTML=
-	    '<option value="8000">8 kbit/sec</option>\n'+
-	    '<option value="16000" selected>16 kbit/sec</option>\n'+
-	    '<option value="24000">24 kbit/sec</option>\n'+
-	    '<option value="32000">32 kbit/sec</option>\n'+
-	    '<option value="40000">40 kbit/sec</option>\n'+
-	    '<option value="48000">48 kbit/sec</option>\n'+
-	    '<option value="56000">56 kbit/sec</option>\n'+
-	    '<option value="64000">64 kbit/sec</option>\n'+
-	    '<option value="80000">80 kbit/sec</option>\n'+
-	    '<option value="96000">96 kbit/sec</option>\n'+
-	    '<option value="112000">112 kbit/sec</option>\n'+
-	    '<option value="128000">128 kbit/sec</option>\n'+
-	    '<option value="144000">144 kbit/sec</option>\n'+
-	    '<option value="160000">160 kbit/sec</option>\n';
-    }
-    if(mpeg_ver==2.5) {
-	Id('bitrate').innerHTML=
-	    '<option value="8000">8 kbit/sec</option>\n'+
-	    '<option value="16000" selected>16 kbit/sec</option>\n'+
-	    '<option value="24000">24 kbit/sec</option>\n'+
-	    '<option value="32000">32 kbit/sec</option>\n'+
-	    '<option value="40000">40 kbit/sec</option>\n'+
-	    '<option value="48000">48 kbit/sec</option>\n'+
-	    '<option value="56000">56 kbit/sec</option>\n'+
-	    '<option value="64000">64 kbit/sec</option>\n';
-    }
 }
 
 
-function SetLayerIII()
+function FileExtension(prof_id)
 {
-    mpeg_ver=GetMpegVersion(parseInt(Id('samprate').value));
-    if(mpeg_ver==1.0) {
-	Id('bitrate').innerHTML=
-	    '<option value="32000">32 kbit/sec</option>\n'+
-	    '<option value="40000" selected>40 kbit/sec</option>\n'+
-	    '<option value="48000">48 kbit/sec</option>\n'+
-	    '<option value="56000">56 kbit/sec</option>\n'+
-	    '<option value="64000">64 kbit/sec</option>\n'+
-	    '<option value="80000">80 kbit/sec</option>\n'+
-	    '<option value="96000">96 kbit/sec</option>\n'+
-	    '<option value="112000">112 kbit/sec</option>\n'+
-	    '<option value="128000">128 kbit/sec</option>\n'+
-	    '<option value="160000">160 kbit/sec</option>\n'+
-	    '<option value="192000">192 kbit/sec</option>\n'+
-	    '<option value="224000">224 kbit/sec</option>\n'+
-	    '<option value="256000">256 kbit/sec</option>\n'+
-	    '<option value="320000">320 kbit/sec</option>\n';
+    for(id in preset_ids) {
+	if(preset_ids[id]==prof_id) {
+	    return preset_exts[id];
+	}
     }
-    if(mpeg_ver==2.0) {
-	Id('bitrate').innerHTML=
-	    '<option value="8000">8 kbit/sec</option>\n'+
-	    '<option value="16000" selected>16 kbit/sec</option>\n'+
-	    '<option value="24000">24 kbit/sec</option>\n'+
-	    '<option value="32000">32 kbit/sec</option>\n'+
-	    '<option value="40000">40 kbit/sec</option>\n'+
-	    '<option value="48000">48 kbit/sec</option>\n'+
-	    '<option value="56000">56 kbit/sec</option>\n'+
-	    '<option value="64000">64 kbit/sec</option>\n'+
-	    '<option value="80000">80 kbit/sec</option>\n'+
-	    '<option value="96000">96 kbit/sec</option>\n'+
-	    '<option value="112000">112 kbit/sec</option>\n'+
-	    '<option value="128000">128 kbit/sec</option>\n'+
-	    '<option value="144000">144 kbit/sec</option>\n'+
-	    '<option value="160000">160 kbit/sec</option>\n';
-    }
-    if(mpeg_ver==2.5) {
-	Id('bitrate').innerHTML=
-	    '<option value="8000">8 kbit/sec</option>\n'+
-	    '<option value="16000" selected>16 kbit/sec</option>\n'+
-	    '<option value="24000">24 kbit/sec</option>\n'+
-	    '<option value="32000">32 kbit/sec</option>\n'+
-	    '<option value="40000">40 kbit/sec</option>\n'+
-	    '<option value="48000">48 kbit/sec</option>\n'+
-	    '<option value="56000">56 kbit/sec</option>\n'+
-	    '<option value="64000">64 kbit/sec</option>\n';
-    }
+
+    return 'dat';
 }
 
-
-function samplerateChanged()
-{
-    if(Id('format').value=='2') {
-	SetLayerII();
-    }
-    if(Id('format').value=='3') {
-	SetLayerIII();
-    }
-}
-
-
-function formatChanged()
-{
-    Id('bitrate').disabled=
-	!((Id('format').value=="2")||
-	  (Id('format').value=="3"));
-    Id('quality').disabled=Id('format').value!="5";
-    samplerateChanged();
-}

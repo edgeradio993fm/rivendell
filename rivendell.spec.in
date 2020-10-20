@@ -1,7 +1,7 @@
 ## rivendell.spec.in
 ##
 ##    The Rivendell Radio Automation System
-##    Copyright (C) 2002-2019  Fred Gleason <fredg@paravelsystems.com>
+##    Copyright (C) 2002-2020  Fred Gleason <fredg@paravelsystems.com>
 ##
 ##    This program is free software; you can redistribute it and/or modify
 ##    it under the terms of version 2 of the GNU General Public License as
@@ -57,6 +57,10 @@ Requires: python36, python36-pycurl, python36-requests, python36-pyserial, pytho
 Summary: The RDSelect system selector tool for Rivendell.
 Requires: rivendell = @VERSION@, autofs
 
+%package webget
+Summary: The WebGet audio fetcher service for Rivendell
+Requires: rivendell = @VERSION@
+
 
 %description
 Rivendell is a complete radio broadcast automation solution, with
@@ -102,6 +106,11 @@ This package contains the RDMonitor/RDSelect tool for Rivendell, which can
 be used to select which amoung multiple Rivendell instances a host should be
 associated with.
 
+
+%description webget
+This package contains the WebGet audio fetching tool for Rivendell.
+
+
 %prep
 
 
@@ -138,6 +147,8 @@ cat conf/rd.conf-sample | sed s/SyslogFacility=1/SyslogFacility=23/ > $RPM_BUILD
 cp conf/asound.conf-sample $RPM_BUILD_ROOT/@DOC_PATH@/
 mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@/misc
 cp conf/syslog.conf-sample $RPM_BUILD_ROOT/@DOC_PATH@/
+mkdir -p $RPM_BUILD_ROOT/etc/fail2ban/filter.d
+cp conf/rivendell-webapi.conf $RPM_BUILD_ROOT/etc/fail2ban/filter.d/
 cp docs/misc/colors $RPM_BUILD_ROOT/@DOC_PATH@/misc/
 cp docs/misc/reports.txt $RPM_BUILD_ROOT/@DOC_PATH@/misc/
 cp docs/misc/ALSA.txt $RPM_BUILD_ROOT/@DOC_PATH@/misc/
@@ -147,6 +158,9 @@ cp docs/misc/ando_interface.odt $RPM_BUILD_ROOT/@DOC_PATH@/misc/
 mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@
 mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@/apis
 cp docs/apis/*.pdf $RPM_BUILD_ROOT/@DOC_PATH@/apis/
+mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@/dtds
+cp docs/dtds/*.html $RPM_BUILD_ROOT/@DOC_PATH@/dtds/
+cp docs/dtds/*.pdf $RPM_BUILD_ROOT/@DOC_PATH@/dtds/
 mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@/tables
 cp docs/tables/*.txt $RPM_BUILD_ROOT/@DOC_PATH@/tables/
 mkdir -p $RPM_BUILD_ROOT/@DOC_PATH@/scripts
@@ -264,7 +278,6 @@ rm -rf $RPM_BUILD_ROOT
 @LOCAL_PREFIX@/bin/rdexport
 @LOCAL_PREFIX@/bin/rdimport
 @LOCAL_PREFIX@/bin/rdmetadata
-@LOCAL_PREFIX@/bin/rdpurgecasts
 @LOCAL_PREFIX@/bin/rdmaint
 @LOCAL_PREFIX@/bin/rdcollect
 @LOCAL_PREFIX@/bin/rdconvert
@@ -374,19 +387,18 @@ rm -rf $RPM_BUILD_ROOT
 /.qt/qt
 @libexecdir@/*.gif
 @libexecdir@/*.html
-@libexecdir@/*.js
-@libexecdir@/*.mp3
+@libexecdir@/editcart.js
+@libexecdir@/editcut.js
+@libexecdir@/utils.js
 @libexecdir@/*.png
-@libexecdir@/*.xml
-@libexecdir@/rdcastmanager.cgi
 %attr(6755,root,root) @libexecdir@/rdxport.cgi
-%attr(6755,root,root) @libexecdir@/webget.cgi
 @sysconfdir@/rd-bin.conf
 /etc/security/console.apps/rdalsaconfig-root
 /etc/pam.d/rdalsaconfig-root
 /etc/security/console.apps/rddbconfig-root
 /etc/pam.d/rddbconfig-root
 /etc/pam.d/rivendell
+/etc/fail2ban/filter.d/rivendell-webapi.conf
 /lib/systemd/system/rivendell.service
 %{_mandir}/man1/rdairplay.1.gz
 %{_mandir}/man1/rdalsaconfig.1.gz
@@ -416,6 +428,7 @@ rm -rf $RPM_BUILD_ROOT
 @LOCAL_PREFIX@/sbin/rdrepld
 @LOCAL_PREFIX@/sbin/rdpadd
 @LOCAL_PREFIX@/sbin/rdpadengined
+@LOCAL_PREFIX@/sbin/rdrssd
 @LOCAL_PREFIX@/sbin/rdmarkerset
 @LOCAL_PREFIX@/sbin/rdcleandirs
 @LOCAL_PREFIX@/sbin/rddbmgr
@@ -468,6 +481,7 @@ rm -rf $RPM_BUILD_ROOT
 @LOCAL_PREFIX@/share/man/man7/rd_createticket.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_deleteaudio.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_deletelog.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_deletepodcast.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_editcart.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_editcut.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_export.7.gz
@@ -489,9 +503,16 @@ rm -rf $RPM_BUILD_ROOT
 @LOCAL_PREFIX@/share/man/man7/rd_listschedcodes.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_listservices.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_listsystemsettings.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_postimage.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_postpodcast.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_postrss.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_removecart.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_removecut.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_removeimage.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_removepodcast.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_removerss.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_savelog.7.gz
+@LOCAL_PREFIX@/share/man/man7/rd_savepodcast.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_trimaudio.7.gz
 @LOCAL_PREFIX@/share/man/man7/rd_unassignschedcode.7.gz
 
@@ -512,6 +533,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4755,root,root) @LOCAL_PREFIX@/bin/rdselect_helper
 @LOCAL_PREFIX@/bin/rdmonitor
 /etc/X11/xinit/xinitrc.d/start-rdmonitor.sh
+
+
+%files webget
+%attr(6755,root,root) @libexecdir@/webget.cgi
+@libexecdir@/webget.js
 
 
 %post select

@@ -2,7 +2,7 @@
 //
 // Audio Format Settings
 //
-//   (C) Copyright 2002-2015 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2002-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -29,6 +29,8 @@ class RDSettings
   enum Format {Pcm16=0,MpegL1=1,MpegL2=2,MpegL3=3,Flac=4,OggVorbis=5,
 	       MpegL2Wav=6,Pcm24=7};
   RDSettings();
+  QString name() const;
+  void setName(const QString &str);
   RDSettings::Format format() const;
   void setFormat(Format format);
   QString formatName() const;
@@ -48,19 +50,19 @@ class RDSettings
   int autotrimLevel() const;
   void setAutotrimLevel(int level);
   QString description();
-  QString customCommandLine() const;
-  void setCustomCommandLine(const QString &str);
-  QString resolvedCustomCommandLine(const QString &destfile);
-  static QString pathName(const QString &stationname,QString pathname,
-			  RDSettings::Format fmt);
+  bool loadPreset(unsigned id);
+  unsigned addPreset();
+  bool savePreset(unsigned id) const;
+  bool deletePreset(unsigned id) const;
+  static QString pathName(QString pathname,RDSettings::Format fmt);
   static QString defaultExtension(RDSettings::Format fmt);
-  static QString defaultExtension(const QString &stationname,
-				  RDSettings::Format fmt);
-  static unsigned bytesPerSec(const QString &stationname,
-			      RDSettings::Format fmt,unsigned quality);
+  QString dump() const;
   void clear();
 
  private:
+  QString SqlFields() const;
+  QString MakeNewName() const;
+  QString set_name;
   Format set_format;
   QString set_format_name;
   unsigned set_channels;
@@ -70,9 +72,7 @@ class RDSettings
   unsigned set_quality;
   int set_normalization_level;
   int set_autotrim_level;
-  QString set_custom_command_line;
 };
 
 
-#endif
-
+#endif  // RDSETTINGS_H

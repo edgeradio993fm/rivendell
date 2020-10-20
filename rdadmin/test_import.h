@@ -2,7 +2,7 @@
 //
 // Test a Rivendell Log Import
 //
-//   (C) Copyright 2002-2019 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2002-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -25,6 +25,7 @@
 #include <q3datetimeedit.h>
 #include <qlabel.h>
 #include <qlineedit.h>
+#include <qpixmap.h>
 
 #include <rddialog.h>
 #include <rdlistview.h>
@@ -60,8 +61,10 @@ class TestImport : public RDDialog
   QLabel *test_filename_label;
   QLineEdit *test_filename_edit;
   QPushButton *test_close_button;
+  QPixmap *test_playout_map;
+  QPixmap *test_mic16_map;
+  QPixmap *test_traffic_map;
 };
 
 
-#endif
-
+#endif  // TEST_IMPORT_H

@@ -806,7 +806,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>MARKER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TRACK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LOG CHAIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[cart not found]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[music link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[traffic link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>whitespace is not permitted in service names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>new profile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1796,23 +1828,23 @@ Skriv over?</translation>
     <name>RDExportSettingsDialog</name>
     <message>
         <source>Edit Export Settings</source>
-        <translation>Rediger eksportinnstillingar</translation>
+        <translation type="obsolete">Rediger eksportinnstillingar</translation>
     </message>
     <message>
         <source>&amp;Channels:</source>
-        <translation>&amp;Kanalar:</translation>
+        <translation type="obsolete">&amp;Kanalar:</translation>
     </message>
     <message>
         <source>&amp;Sample Rate:</source>
-        <translation>&amp;Punktprøverate:</translation>
+        <translation type="obsolete">&amp;Punktprøverate:</translation>
     </message>
     <message>
         <source>&amp;Bitrate:</source>
-        <translation>&amp;Bitrate:</translation>
+        <translation type="obsolete">&amp;Bitrate:</translation>
     </message>
     <message>
         <source>&amp;Quality:</source>
-        <translation>&amp;Kvalitet:</translation>
+        <translation type="obsolete">&amp;Kvalitet:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1942,6 +1974,58 @@ Skriv over?</translation>
         <source>PCM24</source>
         <translation type="unfinished">PCM24</translation>
     </message>
+    <message>
+        <source>Edit Audio Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sample Rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normalization Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autotrim Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dBFS</source>
+        <translation type="unfinished">dBFS</translation>
+    </message>
 </context>
 <context>
     <name>RDGetAth</name>
@@ -2002,6 +2086,13 @@ for rapportperioden.
     <message>
         <source>Pin:</source>
         <translation>Pin-nummer:</translation>
+    </message>
+</context>
+<context>
+    <name>RDImagePickerModel</name>
+    <message>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2822,6 +2913,22 @@ prøv ein gong til!</translation>
     </message>
     <message>
         <source>Import failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid start time and/or length on inline traffic break.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>multiple inline traffic breaks not permitted within the same music event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In event</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

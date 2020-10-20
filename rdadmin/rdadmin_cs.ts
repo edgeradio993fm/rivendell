@@ -236,11 +236,11 @@ a záloha původní databáze uložena v </translation>
     </message>
     <message>
         <source>Add Feed Error</source>
-        <translation>Chyba při přidávání přívodu</translation>
+        <translation type="unfinished">Chyba při přidávání přívodu</translation>
     </message>
     <message>
         <source>A feed with that key name already exists!</source>
-        <translation>Přívod s tímto názvem klíče již existuje!</translation>
+        <translation type="obsolete">Přívod s tímto názvem klíče již existuje!</translation>
     </message>
     <message>
         <source>Add RSS Feed</source>
@@ -1437,7 +1437,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Key Name:</source>
-        <translation>Název klíče:</translation>
+        <translation type="obsolete">Název klíče:</translation>
     </message>
     <message>
         <source>CHANNEL VALUES</source>
@@ -1473,7 +1473,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Audio Upload URL:</source>
-        <translation>Adresa (URL) nahrání zvuku:</translation>
+        <translation type="obsolete">Adresa (URL) nahrání zvuku:</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1485,7 +1485,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Upload Format:</source>
-        <translation>Formát nahrání:</translation>
+        <translation type="obsolete">Formát nahrání:</translation>
     </message>
     <message>
         <source>S&amp;et</source>
@@ -1505,11 +1505,11 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Audio Download URL:</source>
-        <translation>Adresa (URL) stažení zvuku:</translation>
+        <translation type="obsolete">Adresa (URL) stažení zvuku:</translation>
     </message>
     <message>
         <source>Keep Expired Metadata</source>
-        <translation>Zachovat prošlá popisná data</translation>
+        <translation type="obsolete">Zachovat prošlá popisná data</translation>
     </message>
     <message>
         <source>Enable AutoPost</source>
@@ -1525,11 +1525,11 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>Žádná</translation>
+        <translation type="obsolete">Žádná</translation>
     </message>
     <message>
         <source>Maximum Shelf Life:</source>
-        <translation>Největší čas před vypršením:</translation>
+        <translation type="obsolete">Největší čas před vypršením:</translation>
     </message>
     <message>
         <source>days</source>
@@ -1549,23 +1549,23 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Direct</source>
-        <translation>Přímé</translation>
+        <translation type="obsolete">Přímé</translation>
     </message>
     <message>
         <source>Counted</source>
-        <translation>Počítané</translation>
+        <translation type="obsolete">Počítané</translation>
     </message>
     <message>
         <source>Media Link Mode:</source>
-        <translation>Režim odkazu na media:</translation>
+        <translation type="obsolete">Režim odkazu na media:</translation>
     </message>
     <message>
         <source>Enable Feed Redirection</source>
-        <translation>Povolit přesměrování přívodu</translation>
+        <translation type="obsolete">Povolit přesměrování přívodu</translation>
     </message>
     <message>
         <source>URL:</source>
-        <translation>Adresa (URL):</translation>
+        <translation type="obsolete">Adresa (URL):</translation>
     </message>
     <message>
         <source>Header XML:</source>
@@ -1595,7 +1595,7 @@ pole popisných dat</translation>
     </message>
     <message>
         <source>Edit Feed - Redirect</source>
-        <translation>Upravit přívod - Přesměrovat</translation>
+        <translation type="obsolete">Upravit přívod - Přesměrovat</translation>
     </message>
     <message>
         <source>Enabling feed redirection will cause clients subscribed to
@@ -1603,13 +1603,119 @@ this feed to be PERMANENTLY redirected to the
 specified URL.
 
 Do you still want to enable redireciton?</source>
-        <translation>Povolení přesměrování přívodu způsobí, že klienti přihlášení k tomuto
+        <translation type="obsolete">Povolení přesměrování přívodu způsobí, že klienti přihlášení k tomuto
 přívodu budou TRVALE přesměrováni na zadanou adresu.
 
 Pořád ještě chcete povolit přesměrování?</translation>
     </message>
     <message>
         <source>Channel Values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Ne</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Ano</translation>
+    </message>
+    <message>
+        <source>Is Superfeed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Member
+Feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio Upload URL has unsupported scheme!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS Schema</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Item Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Owner Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Owner E-Mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Channel contains explicit content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superfeed must have at least one subfeed assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation type="obsolete">[žádný]</translation>
+    </message>
+    <message>
+        <source>Default Shelf Life</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy to
+Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use as default Item Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticate with local identity file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1883,6 +1989,37 @@ Stále ještě chcete uložit?</translation>
     </message>
     <message>
         <source>No Duplicates allowed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditImage</name>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Zrušit</translation>
+    </message>
+    <message>
+        <source>Image Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Native Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3578,35 +3715,35 @@ in order to populate the audio resources database.</source>
     <name>EditSettings</name>
     <message>
         <source>System-Wide Settings</source>
-        <translation>Nastavení systému-wide</translation>
+        <translation type="obsolete">Nastavení systému-wide</translation>
     </message>
     <message>
         <source>System Sample Rate:</source>
-        <translation>Vzorkovací kmitočet systému:</translation>
+        <translation type="obsolete">Vzorkovací kmitočet systému:</translation>
     </message>
     <message>
         <source>samples/second</source>
-        <translation>vzorky/sekundy</translation>
+        <translation type="obsolete">vzorky/sekundy</translation>
     </message>
     <message>
         <source>Allow Duplicate Cart Titles</source>
-        <translation>Povolit zdvojené názvy vozíků</translation>
+        <translation type="obsolete">Povolit zdvojené názvy vozíků</translation>
     </message>
     <message>
         <source>ISCI Cross Reference Path:</source>
-        <translation>Cesta křížového odkazu ISCI:</translation>
+        <translation type="obsolete">Cesta křížového odkazu ISCI:</translation>
     </message>
     <message>
         <source>Maximum Remote Post Length:</source>
-        <translation>Největší délka vzdáleného vyvěšení:</translation>
+        <translation type="obsolete">Největší délka vzdáleného vyvěšení:</translation>
     </message>
     <message>
         <source>Mbytes</source>
-        <translation>MiB</translation>
+        <translation type="obsolete">MiB</translation>
     </message>
     <message>
         <source>The following duplicate titles must be corrected before &quot;Allow Duplicate Values&quot; can be turned off.</source>
-        <translation>Následující zdvojené názvy musí být opraveny před vypnutím Povolit zdvojené hodnoty.</translation>
+        <translation type="obsolete">Následující zdvojené názvy musí být opraveny před vypnutím Povolit zdvojené hodnoty.</translation>
     </message>
     <message>
         <source>CART</source>
@@ -3618,75 +3755,55 @@ in order to populate the audio resources database.</source>
     </message>
     <message>
         <source>&amp;Save List</source>
-        <translation>&amp;Uložit seznam</translation>
+        <translation type="obsolete">&amp;Uložit seznam</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Z&amp;rušit</translation>
+        <translation type="obsolete">Z&amp;rušit</translation>
     </message>
     <message>
         <source>File Exists</source>
-        <translation>Soubor existuje</translation>
+        <translation type="obsolete">Soubor existuje</translation>
     </message>
     <message>
         <source>The file &quot;</source>
-        <translation>Soubor &quot;</translation>
+        <translation type="obsolete">Soubor &quot;</translation>
     </message>
     <message>
         <source>&quot; exists.
 
 Overwrite?</source>
-        <translation>&quot; existuje.
+        <translation type="obsolete">&quot; existuje.
 
 Přepsat?</translation>
     </message>
     <message>
         <source>File Error</source>
-        <translation>Chyba v souboru</translation>
+        <translation type="obsolete">Chyba v souboru</translation>
     </message>
     <message>
         <source>Unable to write file &quot;</source>
-        <translation type="unfinished">Nelze zapsat soubor &quot;</translation>
+        <translation type="obsolete">Nelze zapsat soubor &quot;</translation>
     </message>
     <message>
         <source>Checking the Library for duplicates.</source>
-        <translation>Přezkušuje se knihovna kvůli zdvojeným názvům.</translation>
-    </message>
-    <message>
-        <source>Temporary Cart Group:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto-Correct Duplicate Cart Titles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show User List in RDLogin</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Přezkušuje se knihovna kvůli zdvojeným názvům.</translation>
     </message>
     <message>
         <source>Cart</source>
-        <translation type="unfinished">Vozík</translation>
+        <translation type="obsolete">Vozík</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Název</translation>
+        <translation type="obsolete">Název</translation>
     </message>
     <message>
-        <source>Multicast Address for Notifications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save text file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <source>[none]</source>
+        <translation type="obsolete">[žádný]</translation>
     </message>
 </context>
 <context>
@@ -3944,6 +4061,10 @@ Instances</source>
         <source>Web Browser</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>SSH Ident. File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditSvc</name>
@@ -4196,6 +4317,18 @@ Custom</source>
         <source>This action will overwrite your existing [custom] Music Data Import settings. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>From Parent RDLogManager Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From Music Scheduler File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline Traffic Start/Length</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditSvcPerms</name>
@@ -4218,6 +4351,126 @@ Custom</source>
     <message>
         <source>&amp;Cancel</source>
         <translation>Z&amp;rušit</translation>
+    </message>
+</context>
+<context>
+    <name>EditSystem</name>
+    <message>
+        <source>System-Wide Settings</source>
+        <translation type="unfinished">Nastavení systému-wide</translation>
+    </message>
+    <message>
+        <source>System Sample Rate:</source>
+        <translation type="unfinished">Vzorkovací kmitočet systému:</translation>
+    </message>
+    <message>
+        <source>samples/second</source>
+        <translation type="unfinished">vzorky/sekundy</translation>
+    </message>
+    <message>
+        <source>Allow Duplicate Cart Titles</source>
+        <translation type="unfinished">Povolit zdvojené názvy vozíků</translation>
+    </message>
+    <message>
+        <source>Auto-Correct Duplicate Cart Titles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISCI Cross Reference Path:</source>
+        <translation type="unfinished">Cesta křížového odkazu ISCI:</translation>
+    </message>
+    <message>
+        <source>Multicast Address for Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Remote Post Length:</source>
+        <translation type="unfinished">Největší délka vzdáleného vyvěšení:</translation>
+    </message>
+    <message>
+        <source>Mbytes</source>
+        <translation type="unfinished">MiB</translation>
+    </message>
+    <message>
+        <source>Temporary Cart Group:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show User List in RDLogin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished">[žádný]</translation>
+    </message>
+    <message>
+        <source>Process RSS Updates On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following duplicate titles must be corrected before &quot;Allow Duplicate Values&quot; can be turned off.</source>
+        <translation type="unfinished">Následující zdvojené názvy musí být opraveny před vypnutím Povolit zdvojené hodnoty.</translation>
+    </message>
+    <message>
+        <source>Cart</source>
+        <translation type="unfinished">Vozík</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <source>&amp;Save List</source>
+        <translation type="unfinished">&amp;Uložit seznam</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">Z&amp;rušit</translation>
+    </message>
+    <message>
+        <source>Save text file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Exists</source>
+        <translation type="unfinished">Soubor existuje</translation>
+    </message>
+    <message>
+        <source>The file &quot;</source>
+        <translation type="unfinished">Soubor &quot;</translation>
+    </message>
+    <message>
+        <source>&quot; exists.
+
+Overwrite?</source>
+        <translation type="unfinished">&quot; existuje.
+
+Přepsat?</translation>
+    </message>
+    <message>
+        <source>File Error</source>
+        <translation type="unfinished">Chyba v souboru</translation>
+    </message>
+    <message>
+        <source>Unable to write file &quot;</source>
+        <translation type="unfinished">Nelze zapsat soubor &quot;</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking the Library for duplicates.</source>
+        <translation type="unfinished">Přezkušuje se knihovna kvůli zdvojeným názvům.</translation>
+    </message>
+    <message>
+        <source>Edit Encoder
+List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4502,6 +4755,10 @@ Permissions</source>
         <source>Allow &amp;WebGet Login</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditUserPerms</name>
@@ -4579,6 +4836,33 @@ Permissions</source>
     <message>
         <source>The Bus/Relay Number is Invalid!</source>
         <translation>Číslo sběrnice/relé je neplatné!</translation>
+    </message>
+</context>
+<context>
+    <name>ImportModel</name>
+    <message>
+        <source>Start Time</source>
+        <translation type="obsolete">Počáteční čas</translation>
+    </message>
+    <message>
+        <source>Cart</source>
+        <translation type="obsolete">Vozík</translation>
+    </message>
+    <message>
+        <source>Len</source>
+        <translation type="obsolete">Délka</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="obsolete">Název</translation>
+    </message>
+    <message>
+        <source>Event ID</source>
+        <translation type="obsolete">ID události</translation>
+    </message>
+    <message>
+        <source>[spot break]</source>
+        <translation type="obsolete">[přerušení místa]</translation>
     </message>
 </context>
 <context>
@@ -4865,6 +5149,34 @@ Stále ještě jej chcete smazat?</translation>
         <source>Encoders on</source>
         <translation type="obsolete">Kodéry na</translation>
     </message>
+    <message>
+        <source>Encoder Profiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Upravit</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Smazat</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Preset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you want to delete preset</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListEndpoints</name>
@@ -5001,7 +5313,7 @@ Stále ještě jej chcete smazat?</translation>
     </message>
     <message>
         <source>Keep Metadata</source>
-        <translation>Zachovat popisná data</translation>
+        <translation type="obsolete">Zachovat popisná data</translation>
     </message>
     <message>
         <source>Creation Date</source>
@@ -5009,7 +5321,7 @@ Stále ještě jej chcete smazat?</translation>
     </message>
     <message>
         <source>&amp;Feeds:</source>
-        <translation>&amp;Přívod:</translation>
+        <translation type="obsolete">&amp;Přívod:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete feed</source>
@@ -5021,15 +5333,99 @@ Stále ještě jej chcete smazat?</translation>
     </message>
     <message>
         <source>Deleting Audio...</source>
-        <translation>Mazání zvuku...</translation>
+        <translation type="obsolete">Mazání zvuku...</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Mazání</translation>
+        <translation type="obsolete">Mazání</translation>
+    </message>
+    <message>
+        <source>Superfeed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to delete remote feed XML.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished">Varování</translation>
+    </message>
+    <message>
+        <source>Deleting remote audio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Public URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Repost</source>
+        <translation type="unfinished">&amp;Vyvěsit znovu</translation>
+    </message>
+    <message>
+        <source>Feed Repost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This operation will repost all XML, image and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>audio data to the remote archive, and thus may</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>take signficant time to complete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting images...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting item data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unpost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting RSS XML data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting RSS XML data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>audio data from the remote archive, and thus may</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This operation will unpost (remove) all XML, image and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting item data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting images...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Podcast Feeds</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5224,6 +5620,85 @@ Stále ještě jej chcete smazat?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ListImages</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Smazat</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Podcast Image File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished">Chyba při zavedení</translation>
+    </message>
+    <message>
+        <source>Image import failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Podcast Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image deletion failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image upload failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image is in use as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a default item image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>an item image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image in Use</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6266,19 +6741,19 @@ Chcete obě spojit?</translation>
     </message>
     <message>
         <source>Start Time</source>
-        <translation>Počáteční čas</translation>
+        <translation type="unfinished">Počáteční čas</translation>
     </message>
     <message>
         <source>Cart</source>
-        <translation>Vozík</translation>
+        <translation type="unfinished">Vozík</translation>
     </message>
     <message>
         <source>Len</source>
-        <translation>Délka</translation>
+        <translation type="unfinished">Délka</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Název</translation>
+        <translation type="unfinished">Název</translation>
     </message>
     <message>
         <source>Contract #</source>
@@ -6286,15 +6761,15 @@ Chcete obě spojit?</translation>
     </message>
     <message>
         <source>Event ID</source>
-        <translation>ID události</translation>
+        <translation type="unfinished">ID události</translation>
     </message>
     <message>
         <source>Announcement Type</source>
-        <translation>Typ oznámení</translation>
+        <translation type="obsolete">Typ oznámení</translation>
     </message>
     <message>
         <source>Imported Events</source>
-        <translation>Zavedené události</translation>
+        <translation type="unfinished">Zavedené události</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6312,10 +6787,22 @@ Prověřte, prosím, svá nastavení a zkuste to znovu.</translation>
     </message>
     <message>
         <source>[spot break]</source>
-        <translation>[přerušení místa]</translation>
+        <translation type="unfinished">[přerušení místa]</translation>
     </message>
     <message>
         <source>GUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annc Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[voice track]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

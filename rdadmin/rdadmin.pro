@@ -41,6 +41,7 @@ x11 {
   SOURCES += edit_group.cpp
   SOURCES += edit_hostvar.cpp
   SOURCES += edit_hotkeys.cpp
+  SOURCES += edit_image.cpp
   SOURCES += edit_jack.cpp
   SOURCES += edit_jack_client.cpp
   SOURCES += edit_livewiregpio.cpp
@@ -52,10 +53,10 @@ x11 {
   SOURCES += edit_rdpanel.cpp
   SOURCES += edit_replicator.cpp
   SOURCES += edit_report.cpp
-  SOURCES += edit_settings.cpp
   SOURCES += edit_station.cpp
   SOURCES += edit_svc.cpp
   SOURCES += edit_svc_perms.cpp
+  SOURCES += edit_system.cpp
   SOURCES += edit_ttys.cpp
   SOURCES += edit_user.cpp
   SOURCES += edit_user_perms.cpp
@@ -63,11 +64,13 @@ x11 {
   SOURCES += info_dialog.cpp
   SOURCES += license.cpp
   SOURCES += list_dropboxes.cpp
+  SOURCES += list_encoders.cpp
   SOURCES += list_endpoints.cpp
   SOURCES += list_feeds.cpp
   SOURCES += list_gpis.cpp
   SOURCES += list_groups.cpp
   SOURCES += list_hostvars.cpp
+  SOURCES += list_images.cpp
   SOURCES += list_livewiregpios.cpp
   SOURCES += list_matrices.cpp
   SOURCES += list_pypads.cpp
@@ -109,6 +112,7 @@ x11 {
   HEADERS += edit_group.h
   HEADERS += edit_hostvar.h
   HEADERS += edit_hotkeys.h
+  HEADERS += edit_image.h
   HEADERS += edit_jack.h
   HEADERS += edit_jack_client.h
   HEADERS += edit_livewiregpio.h
@@ -120,10 +124,10 @@ x11 {
   HEADERS += edit_rdpanel.h
   HEADERS += edit_replicator.h
   HEADERS += edit_report.h
-  HEADERS += edit_settings.h
   HEADERS += edit_station.h
   HEADERS += edit_svc.h
   HEADERS += edit_svc_perms.h
+  HEADERS += edit_system.h
   HEADERS += edit_ttys.h
   HEADERS += edit_user.h
   HEADERS += edit_user_perms.h
@@ -131,11 +135,13 @@ x11 {
   HEADERS += info_dialog.h
   HEADERS += license.h
   HEADERS += list_dropboxes.h
+  HEADERS += list_encoders.h
   HEADERS += list_endpoints.h
   HEADERS += list_feeds.h
   HEADERS += list_gpis.h
   HEADERS += list_groups.h
   HEADERS += list_hostvars.h
+  HEADERS += list_images.h
   HEADERS += list_livewiregpios.h
   HEADERS += list_matrices.h
   HEADERS += list_pypads.h

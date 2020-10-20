@@ -245,11 +245,11 @@ y un respaldo de la base de datos se guardó en </translation>
     </message>
     <message>
         <source>Add Feed Error</source>
-        <translation>Error añadiendo feed</translation>
+        <translation type="unfinished">Error añadiendo feed</translation>
     </message>
     <message>
         <source>A feed with that key name already exists!</source>
-        <translation>¡Un feed con ese nombre ya existe!</translation>
+        <translation type="obsolete">¡Un feed con ese nombre ya existe!</translation>
     </message>
     <message>
         <source>Add RSS Feed</source>
@@ -1439,7 +1439,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Key Name:</source>
-        <translation>Nombre:</translation>
+        <translation type="obsolete">Nombre:</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -1471,7 +1471,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Audio Upload URL:</source>
-        <translation>URL subida audio:</translation>
+        <translation type="obsolete">URL subida audio:</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1483,7 +1483,7 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Upload Format:</source>
-        <translation>Formato de subida:</translation>
+        <translation type="obsolete">Formato de subida:</translation>
     </message>
     <message>
         <source>S&amp;et</source>
@@ -1503,11 +1503,11 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Audio Download URL:</source>
-        <translation>URL descarga audio:</translation>
+        <translation type="obsolete">URL descarga audio:</translation>
     </message>
     <message>
         <source>Keep Expired Metadata</source>
-        <translation>Mantener metadatos vencidos</translation>
+        <translation type="obsolete">Mantener metadatos vencidos</translation>
     </message>
     <message>
         <source>Enable AutoPost</source>
@@ -1523,11 +1523,11 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>Ninguno</translation>
+        <translation type="obsolete">Ninguno</translation>
     </message>
     <message>
         <source>Maximum Shelf Life:</source>
-        <translation>Vida útil máxima:</translation>
+        <translation type="obsolete">Vida útil máxima:</translation>
     </message>
     <message>
         <source>days</source>
@@ -1547,23 +1547,23 @@ files, causing any whose files remain to be imported again.</source>
     </message>
     <message>
         <source>Direct</source>
-        <translation>Directo</translation>
+        <translation type="obsolete">Directo</translation>
     </message>
     <message>
         <source>Counted</source>
-        <translation>Contado</translation>
+        <translation type="obsolete">Contado</translation>
     </message>
     <message>
         <source>Media Link Mode:</source>
-        <translation>Modo de los Enlaces:</translation>
+        <translation type="obsolete">Modo de los Enlaces:</translation>
     </message>
     <message>
         <source>Enable Feed Redirection</source>
-        <translation>Activar redirec. de feed</translation>
+        <translation type="obsolete">Activar redirec. de feed</translation>
     </message>
     <message>
         <source>URL:</source>
-        <translation>URL:</translation>
+        <translation type="obsolete">URL:</translation>
     </message>
     <message>
         <source>Header XML:</source>
@@ -1593,7 +1593,7 @@ metadatos auxiliares</translation>
     </message>
     <message>
         <source>Edit Feed - Redirect</source>
-        <translation>Edtar feed - Redireccionar</translation>
+        <translation type="obsolete">Edtar feed - Redireccionar</translation>
     </message>
     <message>
         <source>Enabling feed redirection will cause clients subscribed to
@@ -1601,7 +1601,7 @@ this feed to be PERMANENTLY redirected to the
 specified URL.
 
 Do you still want to enable redireciton?</source>
-        <translation>Activar el redireccionamiento de feeds causará que los clientes
+        <translation type="obsolete">Activar el redireccionamiento de feeds causará que los clientes
 suscritos a este feed sean redireccionados PERMANENTEMENTE
 al URL especificado.
 
@@ -1613,6 +1613,108 @@ al URL especificado.
     </message>
     <message>
         <source>Channel Values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">No</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Sí</translation>
+    </message>
+    <message>
+        <source>Is Superfeed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Member
+Feeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio Upload URL has unsupported scheme!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS Schema</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Item Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Owner Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Owner E-Mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Channel contains explicit content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superfeed must have at least one subfeed assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Shelf Life</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy to
+Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use as default Item Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticate with local identity file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1885,6 +1987,37 @@ Do you still want to save?</source>
     </message>
     <message>
         <source>No Duplicates allowed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditImage</name>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>Image Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Native Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3589,35 +3722,35 @@ in order to populate the audio resources database.</source>
     <name>EditSettings</name>
     <message>
         <source>System-Wide Settings</source>
-        <translation>Parámetros de todo el Sistema</translation>
+        <translation type="obsolete">Parámetros de todo el Sistema</translation>
     </message>
     <message>
         <source>System Sample Rate:</source>
-        <translation>Tasa de Muestreo del Sistema:</translation>
+        <translation type="obsolete">Tasa de Muestreo del Sistema:</translation>
     </message>
     <message>
         <source>samples/second</source>
-        <translation>muestras/segundo</translation>
+        <translation type="obsolete">muestras/segundo</translation>
     </message>
     <message>
         <source>Allow Duplicate Cart Titles</source>
-        <translation>Permitir títulos duplicados de cartuchos</translation>
+        <translation type="obsolete">Permitir títulos duplicados de cartuchos</translation>
     </message>
     <message>
         <source>ISCI Cross Reference Path:</source>
-        <translation>Ubicac. de Ref. Cruzadas ISCI:</translation>
+        <translation type="obsolete">Ubicac. de Ref. Cruzadas ISCI:</translation>
     </message>
     <message>
         <source>Maximum Remote Post Length:</source>
-        <translation>Long. máx. de posts remotos:</translation>
+        <translation type="obsolete">Long. máx. de posts remotos:</translation>
     </message>
     <message>
         <source>Mbytes</source>
-        <translation>MBytes</translation>
+        <translation type="obsolete">MBytes</translation>
     </message>
     <message>
         <source>The following duplicate titles must be corrected before &quot;Allow Duplicate Values&quot; can be turned off.</source>
-        <translation>Los siguientes títulos duplicados deben ser corregidos antes de desactivar la opción respectiva.</translation>
+        <translation type="obsolete">Los siguientes títulos duplicados deben ser corregidos antes de desactivar la opción respectiva.</translation>
     </message>
     <message>
         <source>CART</source>
@@ -3629,75 +3762,47 @@ in order to populate the audio resources database.</source>
     </message>
     <message>
         <source>&amp;Save List</source>
-        <translation>&amp;Guardar lista</translation>
+        <translation type="obsolete">&amp;Guardar lista</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;Aceptar</translation>
+        <translation type="obsolete">&amp;Aceptar</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancelar</translation>
+        <translation type="obsolete">&amp;Cancelar</translation>
     </message>
     <message>
         <source>File Exists</source>
-        <translation>El archivo ya existe</translation>
+        <translation type="obsolete">El archivo ya existe</translation>
     </message>
     <message>
         <source>The file &quot;</source>
-        <translation>El archivo &quot;</translation>
+        <translation type="obsolete">El archivo &quot;</translation>
     </message>
     <message>
         <source>&quot; exists.
 
 Overwrite?</source>
-        <translation>&quot; ya existe.
+        <translation type="obsolete">&quot; ya existe.
 
 ¿Sobreescribir?</translation>
     </message>
     <message>
         <source>File Error</source>
-        <translation>Error de archivo</translation>
+        <translation type="obsolete">Error de archivo</translation>
     </message>
     <message>
         <source>Checking the Library for duplicates.</source>
-        <translation>Buscando duplicados en la biblioteca.</translation>
-    </message>
-    <message>
-        <source>Temporary Cart Group:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto-Correct Duplicate Cart Titles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show User List in RDLogin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to write file &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Buscando duplicados en la biblioteca.</translation>
     </message>
     <message>
         <source>Cart</source>
-        <translation type="unfinished">Cartucho</translation>
+        <translation type="obsolete">Cartucho</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
-    </message>
-    <message>
-        <source>Multicast Address for Notifications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save text file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Título</translation>
     </message>
 </context>
 <context>
@@ -3953,6 +4058,10 @@ Instances</source>
         <source>Web Browser</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>SSH Ident. File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditSvc</name>
@@ -4153,6 +4262,18 @@ Custom</source>
         <source>This action will overwrite your existing [custom] Music Data Import settings. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>From Parent RDLogManager Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From Music Scheduler File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline Traffic Start/Length</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditSvcPerms</name>
@@ -4175,6 +4296,126 @@ Custom</source>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
+    </message>
+</context>
+<context>
+    <name>EditSystem</name>
+    <message>
+        <source>System-Wide Settings</source>
+        <translation type="unfinished">Parámetros de todo el Sistema</translation>
+    </message>
+    <message>
+        <source>System Sample Rate:</source>
+        <translation type="unfinished">Tasa de Muestreo del Sistema:</translation>
+    </message>
+    <message>
+        <source>samples/second</source>
+        <translation type="unfinished">muestras/segundo</translation>
+    </message>
+    <message>
+        <source>Allow Duplicate Cart Titles</source>
+        <translation type="unfinished">Permitir títulos duplicados de cartuchos</translation>
+    </message>
+    <message>
+        <source>Auto-Correct Duplicate Cart Titles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISCI Cross Reference Path:</source>
+        <translation type="unfinished">Ubicac. de Ref. Cruzadas ISCI:</translation>
+    </message>
+    <message>
+        <source>Multicast Address for Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Remote Post Length:</source>
+        <translation type="unfinished">Long. máx. de posts remotos:</translation>
+    </message>
+    <message>
+        <source>Mbytes</source>
+        <translation type="unfinished">MBytes</translation>
+    </message>
+    <message>
+        <source>Temporary Cart Group:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show User List in RDLogin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Process RSS Updates On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following duplicate titles must be corrected before &quot;Allow Duplicate Values&quot; can be turned off.</source>
+        <translation type="unfinished">Los siguientes títulos duplicados deben ser corregidos antes de desactivar la opción respectiva.</translation>
+    </message>
+    <message>
+        <source>Cart</source>
+        <translation type="unfinished">Cartucho</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Título</translation>
+    </message>
+    <message>
+        <source>&amp;Save List</source>
+        <translation type="unfinished">&amp;Guardar lista</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Aceptar</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Cancelar</translation>
+    </message>
+    <message>
+        <source>Save text file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Exists</source>
+        <translation type="unfinished">El archivo ya existe</translation>
+    </message>
+    <message>
+        <source>The file &quot;</source>
+        <translation type="unfinished">El archivo &quot;</translation>
+    </message>
+    <message>
+        <source>&quot; exists.
+
+Overwrite?</source>
+        <translation type="unfinished">&quot; ya existe.
+
+¿Sobreescribir?</translation>
+    </message>
+    <message>
+        <source>File Error</source>
+        <translation type="unfinished">Error de archivo</translation>
+    </message>
+    <message>
+        <source>Unable to write file &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking the Library for duplicates.</source>
+        <translation type="unfinished">Buscando duplicados en la biblioteca.</translation>
+    </message>
+    <message>
+        <source>Edit Encoder
+List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4459,6 +4700,10 @@ Permissions</source>
         <source>Allow &amp;WebGet Login</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditUserPerms</name>
@@ -4551,6 +4796,33 @@ Permissions</source>
     <message>
         <source>&amp;Close</source>
         <translation type="obsolete">&amp;Cerrar</translation>
+    </message>
+</context>
+<context>
+    <name>ImportModel</name>
+    <message>
+        <source>Start Time</source>
+        <translation type="obsolete">Hora de inicio</translation>
+    </message>
+    <message>
+        <source>Cart</source>
+        <translation type="obsolete">Cartucho</translation>
+    </message>
+    <message>
+        <source>Len</source>
+        <translation type="obsolete">Lon</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="obsolete">Título</translation>
+    </message>
+    <message>
+        <source>Event ID</source>
+        <translation type="obsolete">ID de evento</translation>
+    </message>
+    <message>
+        <source>[spot break]</source>
+        <translation type="obsolete">[parada del spot]</translation>
     </message>
 </context>
 <context>
@@ -4832,6 +5104,34 @@ Do you still want to delete it?</source>
         <source>Encoders on</source>
         <translation type="obsolete">Codificad. en</translation>
     </message>
+    <message>
+        <source>Encoder Profiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Añadir</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Editar</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Borrar</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Preset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you want to delete preset</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListEndpoints</name>
@@ -4968,7 +5268,7 @@ Do you still want to delete it?</source>
     </message>
     <message>
         <source>Keep Metadata</source>
-        <translation>Mantener metadatos</translation>
+        <translation type="obsolete">Mantener metadatos</translation>
     </message>
     <message>
         <source>Creation Date</source>
@@ -4976,7 +5276,7 @@ Do you still want to delete it?</source>
     </message>
     <message>
         <source>&amp;Feeds:</source>
-        <translation>&amp;Feeds:</translation>
+        <translation type="obsolete">&amp;Feeds:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete feed</source>
@@ -4988,15 +5288,99 @@ Do you still want to delete it?</source>
     </message>
     <message>
         <source>Deleting Audio...</source>
-        <translation>Eliminando Audio...</translation>
+        <translation type="obsolete">Eliminando Audio...</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Borrando</translation>
+        <translation type="obsolete">Borrando</translation>
+    </message>
+    <message>
+        <source>Superfeed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to delete remote feed XML.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished">Advertencia</translation>
+    </message>
+    <message>
+        <source>Deleting remote audio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Public URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Repost</source>
+        <translation type="unfinished">&amp;Republicar</translation>
+    </message>
+    <message>
+        <source>Feed Repost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This operation will repost all XML, image and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>audio data to the remote archive, and thus may</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>take signficant time to complete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting images...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting item data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unpost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Posting RSS XML data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting RSS XML data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>audio data from the remote archive, and thus may</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This operation will unpost (remove) all XML, image and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting item data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unposting images...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Podcast Feeds</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5191,6 +5575,85 @@ Do you still want to delete it?</source>
     </message>
     <message>
         <source>Are you sure you want to delete the variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ListImages</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Añadir</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Borrar</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Podcast Image File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished">Error de importación</translation>
+    </message>
+    <message>
+        <source>Image import failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Podcast Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image deletion failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image upload failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image is in use as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a default item image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>an item image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image in Use</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6237,19 +6700,19 @@ Do you want to combine the two?</source>
     </message>
     <message>
         <source>Start Time</source>
-        <translation>Hora de inicio</translation>
+        <translation type="unfinished">Hora de inicio</translation>
     </message>
     <message>
         <source>Cart</source>
-        <translation>Cartucho</translation>
+        <translation type="unfinished">Cartucho</translation>
     </message>
     <message>
         <source>Len</source>
-        <translation>Lon</translation>
+        <translation type="unfinished">Lon</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Título</translation>
+        <translation type="unfinished">Título</translation>
     </message>
     <message>
         <source>Contract #</source>
@@ -6257,15 +6720,15 @@ Do you want to combine the two?</source>
     </message>
     <message>
         <source>Event ID</source>
-        <translation>ID de evento</translation>
+        <translation type="unfinished">ID de evento</translation>
     </message>
     <message>
         <source>Announcement Type</source>
-        <translation>Tipo de Anuncio</translation>
+        <translation type="obsolete">Tipo de Anuncio</translation>
     </message>
     <message>
         <source>Imported Events</source>
-        <translation>Eventos importados</translation>
+        <translation type="unfinished">Eventos importados</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6283,10 +6746,22 @@ Revise los parámetros e intente de nuevo.</translation>
     </message>
     <message>
         <source>[spot break]</source>
-        <translation>[parada del spot]</translation>
+        <translation type="unfinished">[parada del spot]</translation>
     </message>
     <message>
         <source>GUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annc Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[voice track]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -810,7 +810,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>MARKER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TRACK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LOG CHAIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[cart not found]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[music link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[traffic link]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>whitespace is not permitted in service names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>new profile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1807,23 +1839,23 @@ Přepsat?</translation>
     <name>RDExportSettingsDialog</name>
     <message>
         <source>Edit Export Settings</source>
-        <translation>Upravit nastavení uložení v jiném formátu</translation>
+        <translation type="obsolete">Upravit nastavení uložení v jiném formátu</translation>
     </message>
     <message>
         <source>&amp;Channels:</source>
-        <translation>&amp;Kanály:</translation>
+        <translation type="obsolete">&amp;Kanály:</translation>
     </message>
     <message>
         <source>&amp;Sample Rate:</source>
-        <translation>&amp;Vzorkovací kmitočet:</translation>
+        <translation type="obsolete">&amp;Vzorkovací kmitočet:</translation>
     </message>
     <message>
         <source>&amp;Bitrate:</source>
-        <translation>&amp;Datový tok:</translation>
+        <translation type="obsolete">&amp;Datový tok:</translation>
     </message>
     <message>
         <source>&amp;Quality:</source>
-        <translation>&amp;Kvalita:</translation>
+        <translation type="obsolete">&amp;Kvalita:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1953,6 +1985,58 @@ Přepsat?</translation>
         <source>PCM24</source>
         <translation type="unfinished">PCM24</translation>
     </message>
+    <message>
+        <source>Edit Audio Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sample Rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normalization Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autotrim Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dBFS</source>
+        <translation type="unfinished">dbFS</translation>
+    </message>
 </context>
 <context>
     <name>RDGetAth</name>
@@ -2013,6 +2097,13 @@ pro dobu zprávy.
     <message>
         <source>Pin:</source>
         <translation>PIN:</translation>
+    </message>
+</context>
+<context>
+    <name>RDImagePickerModel</name>
+    <message>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2921,6 +3012,22 @@ Zkuste to, prosím, znovu!</translation>
     </message>
     <message>
         <source>Import failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid start time and/or length on inline traffic break.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>multiple inline traffic breaks not permitted within the same music event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In event</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2,7 +2,7 @@
 //
 // Update Rivendell DB schema.
 //
-//   (C) Copyright 2018-2019 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2018-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -23,6 +23,7 @@
 #include <rdcart.h>
 #include <rddb.h>
 #include <rdescape_string.h>
+#include <rdfeed.h>
 #include <rdpaths.h>
 
 #include "rddbmgr.h"
@@ -9916,6 +9917,12 @@ bool MainObject::UpdateSchema(int cur_schema,int set_schema,QString *err_msg)
     WriteSchemaVersion(++cur_schema);
   }
 
+  if((cur_schema<316)&&(set_schema>cur_schema)) {
+    DropColumn("EVENTS","PROPERTIES");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
   if((cur_schema<317)&&(set_schema>cur_schema)) {
     sql=QString("create index STACK_LINES_ID_IDX on ")+
       "STACK_SCHED_CODES(STACK_LINES_ID)";
@@ -9926,6 +9933,472 @@ bool MainObject::UpdateSchema(int cur_schema,int set_schema,QString *err_msg)
     WriteSchemaVersion(++cur_schema);
   }
 
+  if((cur_schema<318)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS add column ")+
+      "IS_SUPERFEED enum('N','Y') default 'N' after KEY_NAME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS add index IS_SUPERFEED_IDX(IS_SUPERFEED)");
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    sql=QString("create table SUPERFEED_MAPS (")+
+      "ID int unsigned primary key auto_increment,"+
+      "FEED_ID int unsigned not null,"+
+      "MEMBER_FEED_ID int unsigned not null,"+
+      "KEY_NAME varchar(8) not null,"+
+      "MEMBER_KEY_NAME varchar(8) not null,"+
+      "index FEED_ID_IDX(FEED_ID),"+
+      "index MEMBER_FEED_ID_IDX(MEMBER_FEED_ID),"+
+      "index KEY_NAME_IDX(KEY_NAME),"+
+      "index MEMBER_KEY_NAME_IDX(MEMBER_KEY_NAME)) "+
+      " charset utf8mb4 collate utf8mb4_general_ci"+
+      db_table_create_postfix;
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<319)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS add column ")+
+      "AUDIENCE_METRICS enum('N','Y') default 'N' after IS_SUPERFEED";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("update FEEDS set AUDIENCE_METRICS='Y'");
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  ///
+  if((cur_schema<320)&&(set_schema>cur_schema)) {
+    sql=QString("alter table USERS add column ")+
+      "EMAIL_ADDRESS varchar(191) after FULL_NAME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<321)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS add column ")+
+      "CHANNEL_EDITOR varchar(64) after CHANNEL_COPYRIGHT";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<322)&&(set_schema>cur_schema)) {
+    sql=QString("create table RSS_SCHEMAS (")+
+      "ID int unsigned primary key,"+
+      "NAME varchar(64) unique not null,"+
+      "HEADER_XML text,"+
+      "CHANNEL_XML text,"+
+      "ITEM_XML text,"+
+      "index NAME_IDX(NAME)) "+
+      " charset utf8mb4 collate utf8mb4_general_ci"+
+      db_table_create_postfix;
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    sql=QString("alter table FEEDS add column ")+
+      "RSS_SCHEMA int unsigned not null default 0 after PURGE_PASSWORD";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<323)&&(set_schema>cur_schema)) {
+    sql=QString("create table FEED_IMAGES (")+
+      "ID int unsigned primary key auto_increment,"+
+      "FEED_ID int unsigned not null,"+
+      "FEED_KEY_NAME varchar(8) not null,"+
+      "WIDTH int not null,"+\
+      "HEIGHT int not null,"+
+      "DEPTH int not null,"+
+      "DESCRIPTION varchar(191) not null,"+
+      "FILE_EXTENSION varchar(10) not null,"+
+      "DATA mediumblob not null,"+
+      "index FEED_ID_IDX (FEED_ID),"+
+      "index FEED_KEY_NAME_IDX (FEED_KEY_NAME)) "+
+      " charset utf8mb4 collate utf8mb4_general_ci"+
+      db_table_create_postfix;
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<324)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS add column CHANNEL_IMAGE_ID ")+
+      "int not null default -1 after CHANNEL_LANGUAGE";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS add column DEFAULT_ITEM_IMAGE_ID ")+
+      "int not null default -1 after KEEP_METADATA";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table PODCASTS add column ITEM_IMAGE_ID ")+
+      "int not null default -1 after ITEM_SOURCE_URL";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<325)&&(set_schema>cur_schema)) {
+    DropTable("RSS_SCHEMAS");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<326)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS add column CHANNEL_AUTHOR varchar(64) ")+
+      "after CHANNEL_EDITOR";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS add column CHANNEL_OWNER_NAME varchar(64) ")+
+      "after CHANNEL_AUTHOR";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS add column ")+
+      "CHANNEL_OWNER_EMAIL varchar(64) after CHANNEL_OWNER_NAME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS add column CHANNEL_EXPLICIT enum('N','Y') ")+
+      "not null default 'N' after CHANNEL_LANGUAGE";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table PODCASTS add column ITEM_EXPLICIT enum('N','Y') ")+
+      "not null default 'N' after ITEM_SOURCE_URL";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<327)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS ")+
+      "add column CHANNEL_SUB_CATEGORY varchar(64) "+
+      "after CHANNEL_CATEGORY";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<328)&&(set_schema>cur_schema)) {
+    DropColumn("FEEDS","AUDIENCE_METRICS");
+    DropColumn("FEEDS","KEEP_METADATA");
+    DropColumn("FEEDS","MEDIA_LINK_MODE");
+    DropColumn("FEEDS","REDIRECT_PATH");
+    DropTable("CAST_DOWNLOADS");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<329)&&(set_schema>cur_schema)) {
+    sql=QString("alter table SYSTEM ")+
+      "add column RSS_PROCESSOR_STATION varchar(64) "+
+      "after NOTIFICATION_ADDRESS";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("select NAME from STATIONS where SYSTEM_MAINT='Y'");
+    q=new RDSqlQuery(sql);
+    if(q->first()) {
+      sql=QString("update SYSTEM set ")+
+	"RSS_PROCESSOR_STATION=\""+RDEscapeString(q->value(0).toString())+"\"";
+      if(!RDSqlQuery::apply(sql,err_msg)) {
+	return false;
+      }
+    }
+    delete q;
+
+    sql=QString("alter table PODCASTS ")+
+      "add column EXPIRATION_DATETIME datetime after EFFECTIVE_DATETIME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("select ")+
+      "ID,"+                  // 00
+      "ORIGIN_DATETIME,"+     // 01
+      "SHELF_LIFE "+          // 02
+      "from PODCASTS where "+
+      "SHELF_LIFE>0";
+    q=new RDSqlQuery(sql);
+    while(q->next()) {
+      sql=QString("update PODCASTS set ")+
+	"EXPIRATION_DATETIME=\""+
+	q->value(1).toDateTime().addDays(q->value(2).toInt()).
+	toString("yyyy-MM-dd hh:mm:ss")+"\" where "+
+	QString().sprintf("ID=%u",q->value(0).toUInt());
+      if(!RDSqlQuery::apply(sql,err_msg)) {
+	return false;
+      }
+    }
+    delete q;
+
+    DropColumn("PODCASTS","SHELF_LIFE");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<330)&&(set_schema>cur_schema)) {
+    sql=QString("alter table PODCASTS ")+
+      "add column ORIGIN_LOGIN_NAME varchar(191) after AUDIO_TIME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table PODCASTS ")+
+      "add column ORIGIN_STATION varchar(64) after ORIGIN_LOGIN_NAME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<331)&&(set_schema>cur_schema)) {
+    DropTable("ENCODER_SAMPLERATES");
+    DropTable("ENCODER_BITRATES");
+    DropTable("ENCODER_CHANNELS");
+    DropTable("ENCODERS");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<332)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS ")+
+      "add column CHANNEL_AUTHOR_IS_DEFAULT enum('N','Y') default 'N' "+
+      "after CHANNEL_AUTHOR";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<333)&&(set_schema>cur_schema)) {
+    sql=QString("alter table STATIONS add ")+
+      "SSH_IDENTITY_FILE text after BROWSER_PATH";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    sql=QString("alter table RECORDINGS ")+
+      "add column URL_USE_ID_FILE enum('N','Y') default 'N' after URL_PASSWORD";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    sql=QString("alter table FEEDS add ")+
+      "column PURGE_USE_ID_FILE enum('N','Y') default 'N' after PURGE_PASSWORD";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<334)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS modify column ")+
+      "PURGE_PASSWORD text";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("select ")+
+      "KEY_NAME,"+        // 00
+      "PURGE_PASSWORD "+  // 01
+      "from FEEDS";
+    q=new RDSqlQuery(sql);
+    while(q->next()) {
+      sql=QString("update FEEDS set ")+
+	"PURGE_PASSWORD=\""+
+	RDEscapeString(q->value(1).toString().toUtf8().toBase64())+"\" where "+
+	"KEY_NAME=\""+RDEscapeString(q->value(0).toString())+"\"";
+      if(!RDSqlQuery::apply(sql,err_msg)) {
+	return false;
+      }
+    }
+    delete q;
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<335)&&(set_schema>cur_schema)) {
+    sql=QString("alter table PODCASTS add column ")+
+      "SHA1_HASH varchar(40) after AUDIO_TIME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table PODCASTS add index SHA1_HASH_IDX(SHA1_HASH)");
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<336)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEED_IMAGES modify column ")+
+      "DATA longblob not null";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<337)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS ")+
+      "add index CHANNEL_IMAGE_ID_IDX(CHANNEL_IMAGE_ID)";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table FEEDS ")+
+      "add index DEFAULT_ITEM_IMAGE_ID_IDX(DEFAULT_ITEM_IMAGE_ID)";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table PODCASTS ")+
+      "add index ITEM_IMAGE_ID_IDX(ITEM_IMAGE_ID)";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<338)&&(set_schema>cur_schema)) {
+    sql=QString("alter table FEEDS ")+
+      "modify column CHANNEL_LANGUAGE varchar(8) default 'en-us'";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<339)&&(set_schema>cur_schema)) {
+    sql=QString("alter table SERVICES ")+
+      "add column SUB_EVENT_INHERITANCE int not null default 0 "+
+      "after CHAIN_LOG";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<340)&&(set_schema>cur_schema)) {
+    sql=QString("delete from IMPORTER_LINES");  // Purge stale lines first
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "add column TYPE int unsigned not null "+
+      "after LINE_ID";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "modify column START_HOUR int";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "modify column START_SECS int";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    DropColumn("IMPORTER_LINES","INSERT_BREAK");
+    DropColumn("IMPORTER_LINES","INSERT_TRACK");
+    DropColumn("IMPORTER_LINES","INSERT_FIRST");
+    DropColumn("IMPORTER_LINES","LINK_START_TIME");
+    DropColumn("IMPORTER_LINES","LINK_LENGTH");
+    DropColumn("IMPORTER_LINES","TRACK_STRING");
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<341)&&(set_schema>cur_schema)) {
+    sql=QString("delete from IMPORTER_LINES");  // Purge stale lines first
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "add column FILE_LINE int unsigned not null after PROCESS_ID";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "add column LINK_START_TIME time after EXT_CART_NAME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table IMPORTER_LINES ")+
+      "add column LINK_LENGTH int after LINK_START_TIME";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<342)&&(set_schema>cur_schema)) {
+    sql=
+     QString("create index EVENT_DATETIME_IDX on GPIO_EVENTS(EVENT_DATETIME)"); 
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<343)&&(set_schema>cur_schema)) {
+    sql=QString("create table if not exists ENCODER_PRESETS (")+
+      "ID int auto_increment not null primary key,"+
+      "NAME varchar(64) not null,"+
+      "FORMAT int unsigned not null,"+
+      "CHANNELS int unsigned not null,"+
+      "SAMPLE_RATE int unsigned not null,"+
+      "BIT_RATE int unsigned not null,"+
+      "QUALITY int unsigned not null,"+
+      "NORMALIZATION_LEVEL int not null,"+
+      "AUTOTRIM_LEVEL int not null,"+
+      "unique index NAME_IDX (NAME))"+
+      " charset utf8mb4 collate utf8mb4_general_ci"+
+      db_table_create_postfix;
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
 
 
 
