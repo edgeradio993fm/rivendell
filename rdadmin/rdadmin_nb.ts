@@ -3792,7 +3792,7 @@ Instances</source>
     </message>
     <message>
         <source>Note Cart String:</source>
-        <translation>Notat-korgstreng:</translation>
+        <translation type="obsolete">Notat-korgstreng:</translation>
     </message>
     <message>
         <source>Insert Voice Track String:</source>
@@ -3970,15 +3970,19 @@ Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>From Parent RDLogManager Event</source>
+        <source>From Relative Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>From Music Scheduler File</source>
+        <source>From Scheduler File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Inline Traffic Start/Length</source>
+        <source>Inline Event Start/Length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Marker String</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6211,6 +6215,10 @@ Sjekk oppsettet ditt og prøv att.</translation>
     </message>
     <message>
         <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NOTE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
