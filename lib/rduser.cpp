@@ -2,7 +2,7 @@
 //
 // Abstract a Rivendell User.
 //
-//   (C) Copyright 2002-2003,2016 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2002-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -19,6 +19,9 @@
 //
 
 #include <stdlib.h>
+#include <sys/time.h>
+
+#include <openssl/sha.h>
 
 #include <rdconf.h>
 #include <rdpam.h>
@@ -242,6 +245,19 @@ bool RDUser::adminConfig() const
 void RDUser::setAdminConfig(bool priv) const
 {
   SetRow("ADMIN_CONFIG_PRIV",priv);
+}
+
+
+bool RDUser::adminRss() const
+{
+  return RDBool(RDGetSqlValue("USERS","LOGIN_NAME",user_name,
+			    "ADMIN_RSS_PRIV").toString());
+}
+
+
+void RDUser::setAdminRss(bool priv) const
+{
+  SetRow("ADMIN_RSS_PRIV",priv);
 }
 
 
@@ -604,6 +620,86 @@ QStringList RDUser::services() const
   delete q;
 
   return services_list;
+}
+
+
+bool RDUser::createTicket(QString *ticket,QDateTime *expire_dt,
+			  const QHostAddress &client_addr,
+			  QDateTime start_dt) const
+{
+  *ticket=QString();
+  *expire_dt=QDateTime();
+  if(!start_dt.isValid()) {
+    start_dt=QDateTime::currentDateTime();
+  }
+
+  if(exists()) {
+    char rawstr[1024];
+    unsigned char sha1[SHA_DIGEST_LENGTH];
+    QString sql;
+    struct timeval tv;
+
+    memset(&tv,0,sizeof(tv));
+    gettimeofday(&tv,NULL);
+    srandom(tv.tv_usec);
+    for(int i=0;i<5;i++) {
+      long r=random();
+      unsigned ipv4_addr=client_addr.toIPv4Address();
+      snprintf(rawstr+i*8,8,"%c%c%c%c%c%c%c%c",
+	       0xff&((int)r>>24),0xff&(ipv4_addr>>24),
+	       0xff&((int)r>>16),0xff&(ipv4_addr>>16),
+	       0xff&((int)r>>8),0xff&(ipv4_addr>>8),
+	       0xff&(int)r,0xff&ipv4_addr);
+    }
+    SHA1((const unsigned char *)rawstr,40,sha1);
+    *ticket="";
+    for(int i=0;i<SHA_DIGEST_LENGTH;i++) {
+      *ticket+=QString().sprintf("%02x",0xFF&rawstr[i]);
+    }
+    *expire_dt=start_dt.addSecs(webapiAuthTimeout());
+    sql=QString("insert into WEBAPI_AUTHS set ")+
+      "TICKET=\""+RDEscapeString(*ticket)+"\","+
+      "LOGIN_NAME=\""+RDEscapeString(name())+"\","+
+      "IPV4_ADDRESS=\""+client_addr.toString()+"\","+
+      "EXPIRATION_DATETIME=\""+
+      expire_dt->toString("yyyy-MM-dd hh:mm:ss")+"\"";
+    RDSqlQuery::apply(sql);
+
+    return true;
+  }
+
+  return false;
+}
+
+
+bool RDUser::ticketIsValid(const QString &ticket,
+			   const QHostAddress &client_addr,
+			   QString *username,QDateTime *expire_dt)
+{
+  QString sql;
+  RDSqlQuery *q=NULL;
+
+  sql=QString("select ")+
+    "LOGIN_NAME,"+           // 00
+    "EXPIRATION_DATETIME "+  // 01
+    "from WEBAPI_AUTHS where "+
+    "(TICKET=\""+RDEscapeString(ticket)+"\")&&"+
+    "(IPV4_ADDRESS=\""+client_addr.toString()+"\")&&"+
+    "(EXPIRATION_DATETIME>now())";
+  q=new RDSqlQuery(sql);
+  if(q->first()) {
+    if(username!=NULL) {
+      *username=q->value(0).toString();
+    }
+    if(expire_dt!=NULL) {
+      *expire_dt=q->value(1).toDateTime();
+    }
+    delete q;
+    return true;
+  }
+  delete q;
+
+  return false;
 }
 
 

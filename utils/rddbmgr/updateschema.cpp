@@ -10400,6 +10400,48 @@ bool MainObject::UpdateSchema(int cur_schema,int set_schema,QString *err_msg)
     WriteSchemaVersion(++cur_schema);
   }
 
+  if((cur_schema<344)&&(set_schema>cur_schema)) {
+    sql=QString("alter table SYSTEM add column ")+
+      "ORIGIN_EMAIL_ADDRESS varchar(64) not null "+
+      "default 'Rivendell <noreply@example.com>' "+
+      "after RSS_PROCESSOR_STATION";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    sql=QString("alter table GROUPS add column ")+
+      "NOTIFY_EMAIL_ADDRESS text after COLOR";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<345)&&(set_schema>cur_schema)) {
+    sql=QString("alter table DROPBOXES add column ")+
+      "SEND_EMAIL enum('N','Y') not null default 'N' after DELETE_SOURCE";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    WriteSchemaVersion(++cur_schema);
+  }
+
+  if((cur_schema<346)&&(set_schema>cur_schema)) {
+    sql=QString("alter table USERS drop column ADMIN_USERS_PRIV");
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+    sql=QString("alter table USERS add column ")+
+      "ADMIN_RSS_PRIV enum('N','Y') not null default 'N' "+
+      "after ADMIN_CONFIG_PRIV";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(++cur_schema);
+  }
+
 
 
   // NEW SCHEMA UPDATES GO HERE...

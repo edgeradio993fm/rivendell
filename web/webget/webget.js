@@ -22,29 +22,35 @@ function Id(id)
 }
 
 
-function MakePost()
+function ProcessGet()
 {
-    var sep=RD_MakeMimeSeparator();
-    form=sep+"\r\n";
+    form=new FormData();
 
-    form+=RD_AddMimePart('title',Id('title').value,sep,false);
-    form+=RD_AddMimePart('preset',Id('preset').value,sep,false);
-    form+=RD_AddMimePart('LOGIN_NAME',Id('LOGIN_NAME').value,sep,false);
-    form+=RD_AddMimePart('PASSWORD',Id('PASSWORD').value,sep,true);
+    form.append('TICKET',Id('TICKET').value);
+    form.append('direction','get');
+    form.append('title',Id('title').value);
+    form.append('preset',Id('preset').value);
 
-    return form;
+    SendForm(form,'webget.cgi','get_spinner');
 }
 
 
-function ProcessOkButton()
+function ProcessPut()
 {
-    SendForm(MakePost(),"webget.cgi");
+    form=new FormData();
+
+    form.append('TICKET',Id('TICKET').value);
+    form.append('direction','put');
+    form.append('group',Id('group').value);
+    form.append('filename',Id('filename').files[0]);
+
+    SendForm(form,'webget.cgi','put_spinner');
 }
 
 
-function SendForm(form,url)
+function SendForm(form,url,spinner_id)
 {
-    var http=RD_GetXMLHttpRequest();
+    var http=new XMLHttpRequest();
     if(http==null) {
 	return;
     }
@@ -52,6 +58,7 @@ function SendForm(form,url)
     //
     // Send the form
     //
+    Id(spinner_id).innerHTML='<img src="/rd-bin/donut-spinner.gif">';
     http.open("POST",url,true);
     http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     http.responseType='blob';
@@ -61,30 +68,40 @@ function SendForm(form,url)
     // Process the response
     //
     http.onload=function(e) {
-	if(this.status==200) {
-	    var blob=new Blob([this.response],
-			      {type: http.getResponseHeader('content-type')});
-	    let a=document.createElement('a');
-	    a.style='display: none';
-	    document.body.appendChild(a);
-	    let url=window.URL.createObjectURL(blob);
-	    a.href=url;
-	    a.download=Id('title').value+'.'+FileExtension(Id('preset').value);
-	    a.click();
-	    window.URL.revokeObjectURL(url);
-	}
-	else {
-	    if(this.status==401) {
-		alert('Invalid User Name or Password!');
-	    }
-	    else {
-		if(this.status=404) {
-		    alert('No cart with that name found!');
+	Id(spinner_id).innerHTML='';
+	var blob=new Blob([this.response],
+			  {type: http.getResponseHeader('content-type')});
+	var f0=blob.type.split(';');
+	if(f0[0]=='text/html') {
+	    reader=new FileReader();
+	    reader.addEventListener('loadend',()=> {
+		if(http.status==403) {  // Ticket expired, display the login
+		    document.open(http.getResponseHeader("Content-Type"));
+		    document.write(reader.result);
+		    document.close();
 		}
 		else {
-		    alert('Unable to access WebGet [response code: '+
-			  http.status+']!');
-		}
+		    alert(reader.result);
+}
+	    });
+	    reader.readAsText(blob);
+	}
+	else {
+	    if((f0[0]=='audio/x-mpeg')||
+	       (f0[0]=='audio/x-wav')||
+	       (f0[0]=='audio/ogg')||
+	       (f0[0]=='audio/flac')) {
+		let a=document.createElement('a');
+		a.style='display: none';
+		document.body.appendChild(a);
+		let url=window.URL.createObjectURL(blob);
+		a.href=url;
+		a.download=Id('title').value+'.'+FileExtension(Id('preset').value);
+		a.click();
+		window.URL.revokeObjectURL(url);
+	    }
+	    else {
+		alert('Unknown mimetype: '+f0[0]);
 	    }
 	}
     }
@@ -102,3 +119,14 @@ function FileExtension(prof_id)
     return 'dat';
 }
 
+
+function TitleChanged()
+{
+    Id('get_button').disabled=Id('title').value.length==0;
+}
+
+
+function FilenameChanged()
+{
+    Id('put_button').disabled=Id('filename').value.length==0;
+}

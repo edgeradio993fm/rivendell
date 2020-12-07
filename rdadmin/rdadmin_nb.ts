@@ -1208,6 +1208,10 @@ files, causing any whose files remain to be imported again.</source>
         <source>Select Log File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send e-mail reports</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditEncoder</name>
@@ -1696,6 +1700,10 @@ Vil du framleis lagra?</translation>
     </message>
     <message>
         <source>days after cut creation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notification E-Mail Addresses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4126,6 +4134,10 @@ Overwrite?</source>
 List</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Origin E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditTtys</name>
@@ -4411,6 +4423,10 @@ Permissions</source>
     </message>
     <message>
         <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Administer RSS Feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5092,39 +5108,39 @@ Klikk på &quot;Lisens&quot;-knappen for fleire opplysningar.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NAMN</translation>
+        <translation type="obsolete">NAMN</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>SKILDRING</translation>
+        <translation type="obsolete">SKILDRING</translation>
     </message>
     <message>
         <source>START CART</source>
-        <translation>START KORG</translation>
+        <translation type="obsolete">START KORG</translation>
     </message>
     <message>
         <source>END CART</source>
-        <translation>SLUTT KORG</translation>
+        <translation type="obsolete">SLUTT KORG</translation>
     </message>
     <message>
         <source>ENFORCE RANGE</source>
-        <translation>TVING OMRÅDE</translation>
+        <translation type="obsolete">TVING OMRÅDE</translation>
     </message>
     <message>
         <source>DEFAULT TYPE</source>
-        <translation>STANDARDTYPE</translation>
+        <translation type="obsolete">STANDARDTYPE</translation>
     </message>
     <message>
         <source>TRAFFIC REPORT</source>
-        <translation>TRAFIKKRAPPORT</translation>
+        <translation type="obsolete">TRAFIKKRAPPORT</translation>
     </message>
     <message>
         <source>MUSIC REPORT</source>
-        <translation>MUSIKKRAPPORT</translation>
+        <translation type="obsolete">MUSIKKRAPPORT</translation>
     </message>
     <message>
         <source>NOW &amp; NEXT</source>
-        <translation>NO &amp; NESTE</translation>
+        <translation type="obsolete">NO &amp; NESTE</translation>
     </message>
     <message>
         <source>&amp;Groups:</source>
@@ -5141,6 +5157,42 @@ Klikk på &quot;Lisens&quot;-knappen for fleire opplysningar.</translation>
     <message>
         <source>Delete Group</source>
         <translation>Slett gruppa</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enforce Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Traffic Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now &amp; Next</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5745,16 +5797,8 @@ Er du sikker på at du vil halda fram?</translation>
         <translation>Slett brukaren</translation>
     </message>
     <message>
-        <source>USER NAME</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FULL NAME</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished">SKILDRING</translation>
+        <translation type="obsolete">SKILDRING</translation>
     </message>
     <message>
         <source>This user is set as the default user for the following hosts:
@@ -5764,6 +5808,30 @@ Er du sikker på at du vil halda fram?</translation>
     </message>
     <message>
         <source>You must change this before deleting the user.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Auth</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

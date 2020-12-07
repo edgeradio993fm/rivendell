@@ -6,7 +6,7 @@
   <refmeta>
     <refentrytitle>rdimport</refentrytitle>
     <manvolnum>1</manvolnum>
-    <refmiscinfo class='source'>February 2020</refmiscinfo>
+    <refmiscinfo class='source'>October 2020</refmiscinfo>
     <refmiscinfo class='manual'>Linux Audio Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
@@ -252,6 +252,24 @@
 	  <command>rd.conf</command><manvolnum>5</manvolnum>.
 	  This option is mutually exclusive with the <option>--log-directory</option>
 	  and <option>--log-filename</option> options.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>
+	<option>--mail-per-file</option>
+      </term>
+      <listitem>
+	<para>
+	  Send an e-mail message for each file processed, rather than
+	  a single message per run summarizing all actions taken. Implies
+	  the <command>--send-mail</command> switch.
+	</para>
+	<para>
+	  See the <command>--send-mail</command> switch (below) for more
+	  details about generating e-mailed reports from
+	  <command>rdimport</command><manvolnum>1</manvolnum>.
 	</para>
       </listitem>
     </varlistentry>
@@ -504,6 +522,25 @@
 
     <varlistentry>
       <term>
+	<option>--output-pattern=</option><replaceable>pattern</replaceable>
+      </term>
+      <listitem>
+	<para>
+	  Specify a <replaceable>pattern</replaceable> string
+	  (which may include metadata wildcards), which will cause
+	  <command>rdimport</command><manvolnum>1</manvolnum> to print
+	  this string to standard output once for each file successfully
+	  imported, with the wildcards appropriately resolved.
+	</para>
+	<para>
+	  See the <option>--metadata-pattern</option> section (above) for
+	  the list of supported wildcards.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>
 	<option>--segue-length=</option><replaceable>length</replaceable>
       </term>
       <listitem>
@@ -524,6 +561,33 @@
 	  setting the segue start marker, in dBFS, as measured after any
           specified normalization has been applied.  Default action is not
 	  to create segue markers.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>
+	<option>--send-mail</option>
+      </term>
+      <listitem>
+	<para>
+	  Send e-mail to the address(es) specified in the destination group's
+	  <computeroutput>Notification E-Mail Addresses</computeroutput>
+	  setting in <command>rdadmin</command><manvolnum>1</manvolnum>
+	  summarizing the action(s) performed during the run.
+	  Each invocation of
+	  <command>rdimport</command><manvolnum>1</manvolnum> will
+	  potentially generate
+	  one message for all successful imports and another for all failed
+	  imports (but see the <option>--mail-per-file</option> switch
+	  (above) for a way to modify this behavior).
+	</para>
+	<para>
+	  NOTE: Rivendell uses the system's
+	  <command>sendmail</command><manvolnum>1</manvolnum> interface when
+	  originating e-mail. For many modern e-mail setups, additional site-
+	  and distro-specific configuration will likely be necessary beyond
+	  what can be covered here.
 	</para>
       </listitem>
     </varlistentry>
@@ -849,6 +913,19 @@
 
     <varlistentry>
       <term>
+	<option>--ticket=</option><replaceable>ticket-hash</replaceable>:<replaceable>ipv4-address</replaceable>
+      </term>
+      <listitem>
+	<para>
+	  Run <command>rdimport</command><manvolnum>1</manvolnum> as the
+	  Rivendell user specified by <replaceable>ticket</replaceable>
+	  rather than as the currently &quot;logged in&quot; user.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>
 	<option>--to-cart=</option><replaceable>cartnum</replaceable>
       </term>
       <listitem>
@@ -928,6 +1005,25 @@
   </variablelist>
 </refsect1>
 
+<refsect1 id='exit_values'><title>Exit Values</title>
+  <para>
+    <segmentedlist>
+      <?dbhtml list-presentation="tabular"?>
+      <?dbfo   list-presentation="tabular"?>
+      <segtitle></segtitle>
+      <segtitle></segtitle>
+      <seglistitem><seg>0</seg><seg>Normal exit</seg></seglistitem>
+      <seglistitem><seg>2</seg><seg>Unable to open database</seg></seglistitem>
+      <seglistitem><seg>4</seg><seg>Unknown/invalid command line option</seg></seglistitem>
+      <seglistitem><seg>13</seg><seg>One or more audio imports failed</seg></seglistitem>
+      <seglistitem><seg>14</seg><seg>Unknown dropbox ID</seg></seglistitem>
+      <seglistitem><seg>15</seg><seg>No such group</seg></seglistitem>
+      <seglistitem><seg>16</seg><seg>Invalid cart number</seg></seglistitem>
+      <seglistitem><seg>17</seg><seg>No such scheduler code</seg></seglistitem>
+    </segmentedlist>
+  </para>
+</refsect1>
+
 <refsect1>
   <title>NOTES</title>
   <para>
@@ -951,6 +1047,10 @@
 
 <refsect1 id='see_also'><title>See Also</title>
 <para>
+  <citerefentry>
+    <refentrytitle>sendmail</refentrytitle><manvolnum>1</manvolnum>
+  </citerefentry>
+  <literal>,</literal>
   <citerefentry>
     <refentrytitle>rdexport</refentrytitle><manvolnum>1</manvolnum>
   </citerefentry>

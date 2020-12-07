@@ -28,7 +28,10 @@
 #include <qsqldatabase.h>
 #include <qfileinfo.h>
 #include <qdatetime.h>
+#include <QList>
+#include <QStringList>
 
+#include <rdapplication.h>
 #include <rdcart.h>
 #include <rdcut.h>
 #include <rdgroup.h>
@@ -36,6 +39,7 @@
 #include <rdwavedata.h>
 #include <rdwavefile.h>
 
+#include "journal.h"
 #include "markerset.h"
 
 #define RDIMPORT_TEMP_BASENAME "rdimp"
@@ -74,6 +78,8 @@ class MainObject : public QObject
   void ReadXmlFile(const QString &basename,RDWaveData *wavedata) const;
   void Log(int prio,const QString &msg) const;
   void SendNotification(RDNotification::Action action,unsigned cartnum);
+  void NormalExit() const;
+  void ErrorExit(RDApplication::ExitCode code) const;
   unsigned import_file_key;
   RDGroup *import_group;
   bool import_verbose;
@@ -112,8 +118,11 @@ class MainObject : public QObject
   int import_autotrim_level;
   int import_segue_level;
   int import_segue_length;
+  bool import_send_mail;
+  bool import_mail_per_file;
   unsigned import_cart_number;
   QString import_metadata_pattern;
+  QString import_output_pattern;
   QString import_string_agency;
   QString import_string_album;
   QString import_string_artist;
@@ -133,6 +142,7 @@ class MainObject : public QObject
   QString import_string_title;
   QString import_string_user_defined;
   int import_string_year;
+  int import_failed_imports;
   struct DropboxList {
     QString filename;
     unsigned size;
@@ -148,6 +158,7 @@ class MainObject : public QObject
   MarkerSet *import_segue_markers;
   MarkerSet *import_fadedown_marker;
   MarkerSet *import_fadeup_marker;
+  Journal *import_journal;
 };
 
 

@@ -2,7 +2,7 @@
 //
 // Login widget for RDAdmin.
 //
-//   (C) Copyright 2002-2019 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2002-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -20,17 +20,12 @@
 
 #include <math.h>
 
-#include <qdialog.h>
 #include <qstring.h>
 #include <qpushbutton.h>
-#include <qradiobutton.h>
 #include <qlineedit.h>
-#include <q3textedit.h>
 #include <qlabel.h>
 #include <qpainter.h>
-#include <qevent.h>
 #include <qmessagebox.h>
-#include <q3buttongroup.h>
 
 #include <rdtextvalidator.h>
 
@@ -39,15 +34,11 @@
 Login::Login(QString *username,QString *password,QWidget *parent)
   : RDDialog(parent)
 {
-  setModal(true);
-
   //
   // Fix the Window Size
   //
-  setMinimumWidth(sizeHint().width());
-  setMaximumWidth(sizeHint().width());
-  setMinimumHeight(sizeHint().height());
-  setMaximumHeight(sizeHint().height());
+  setMinimumSize(sizeHint());
+  setMaximumSize(sizeHint());
 
   setWindowTitle("RDAdmin");
   login_name=username;
@@ -82,7 +73,7 @@ Login::Login(QString *username,QString *password,QWidget *parent)
   //
   login_name_edit=new QLineEdit(this);
   login_name_edit->setGeometry(100,10,100,19);
-  login_name_edit->setMaxLength(16);
+  login_name_edit->setMaxLength(RD_MAX_PASSWORD_LENGTH);
   login_name_edit->setFocus();
   login_name_edit->setValidator(validator);
   QLabel *login_name_label=new QLabel(login_name_edit,tr("User &Name:"),this);

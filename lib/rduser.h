@@ -2,7 +2,7 @@
 //
 // Abstract a Rivendell User
 //
-//   (C) Copyright 2002-2004,2016 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2002-2020 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -20,6 +20,9 @@
 
 #ifndef RDUSER_H
 #define RDUSER_H
+
+#include <QDateTime>
+#include <QHostAddress>
 
 class RDUser
 {
@@ -52,6 +55,8 @@ class RDUser
   void setWebapiAuthTimeout(int sec) const;
   bool adminConfig() const;
   void setAdminConfig(bool priv) const;
+  bool adminRss() const;
+  void setAdminRss(bool priv) const;
   bool createCarts() const;
   void setCreateCarts(bool priv) const;
   bool deleteCarts() const;
@@ -96,6 +101,12 @@ class RDUser
   bool feedAuthorized(const QString &keyname);
   QString serviceCheckDefault(QString serv) const;
   QStringList services() const;
+  bool createTicket(QString *ticket,QDateTime *expire_dt,
+		    const QHostAddress &client_addr,
+		    QDateTime start_dt=QDateTime()) const;
+  static bool ticketIsValid(const QString &ticket,
+			    const QHostAddress &client_addr,
+			    QString *username=NULL,QDateTime *expire_dt=NULL);
   static bool emailIsValid(const QString &addr);
   static QString emailContact(const QString &addr,const QString &fullname);
 

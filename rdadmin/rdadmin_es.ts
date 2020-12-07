@@ -1312,6 +1312,10 @@ files, causing any whose files remain to be imported again.</source>
         <source>Select Log File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send e-mail reports</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditEncoder</name>
@@ -1889,6 +1893,10 @@ Do you still want to save?</source>
     </message>
     <message>
         <source>days after cut creation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notification E-Mail Addresses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4417,6 +4425,10 @@ Overwrite?</source>
 List</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Origin E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditTtys</name>
@@ -4702,6 +4714,10 @@ Permissions</source>
     </message>
     <message>
         <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Administer RSS Feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5476,39 +5492,39 @@ Do you still want to delete it?</source>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NOMBRE</translation>
+        <translation type="obsolete">NOMBRE</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>DESCRIPCIÓN</translation>
+        <translation type="obsolete">DESCRIPCIÓN</translation>
     </message>
     <message>
         <source>START CART</source>
-        <translation>CART INICIO</translation>
+        <translation type="obsolete">CART INICIO</translation>
     </message>
     <message>
         <source>END CART</source>
-        <translation>CART FIN</translation>
+        <translation type="obsolete">CART FIN</translation>
     </message>
     <message>
         <source>ENFORCE RANGE</source>
-        <translation>OBLIGAR RANGO</translation>
+        <translation type="obsolete">OBLIGAR RANGO</translation>
     </message>
     <message>
         <source>DEFAULT TYPE</source>
-        <translation>TIPO INICIAL</translation>
+        <translation type="obsolete">TIPO INICIAL</translation>
     </message>
     <message>
         <source>TRAFFIC REPORT</source>
-        <translation>REPORTE TRÁFICO</translation>
+        <translation type="obsolete">REPORTE TRÁFICO</translation>
     </message>
     <message>
         <source>MUSIC REPORT</source>
-        <translation>REPORTE MÚSICA</translation>
+        <translation type="obsolete">REPORTE MÚSICA</translation>
     </message>
     <message>
         <source>NOW &amp; NEXT</source>
-        <translation>NOW &amp; NEXT</translation>
+        <translation type="obsolete">NOW &amp; NEXT</translation>
     </message>
     <message>
         <source>&amp;Groups:</source>
@@ -5525,6 +5541,42 @@ Do you still want to delete it?</source>
     <message>
         <source>Delete Group</source>
         <translation>Borrar grupo</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enforce Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Traffic Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now &amp; Next</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6127,15 +6179,15 @@ Do you still want to proceed?</source>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>DESCRIPCIÓN</translation>
+        <translation type="obsolete">DESCRIPCIÓN</translation>
     </message>
     <message>
         <source>USER NAME</source>
-        <translation>NMBRE USUAR</translation>
+        <translation type="obsolete">NMBRE USUAR</translation>
     </message>
     <message>
         <source>FULL NAME</source>
-        <translation>NMBRE COMPLETO</translation>
+        <translation type="obsolete">NMBRE COMPLETO</translation>
     </message>
     <message>
         <source>Are you sure you want to delete user</source>
@@ -6160,6 +6212,30 @@ Do you still want to proceed?</source>
     <message>
         <source>You cannot delete yourself!</source>
         <translation>¡Ud. no puede borrarse a sí mismo!</translation>
+    </message>
+    <message>
+        <source>Login Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Auth</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

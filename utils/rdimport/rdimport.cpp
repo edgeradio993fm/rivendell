@@ -35,7 +35,6 @@
 #include <qstringlist.h>
 
 #include <rd.h>
-#include <rdapplication.h>
 #include <rdaudioimport.h>
 #include <rdconfig.h>
 #include <rdconf.h>
@@ -98,6 +97,10 @@ MainObject::MainObject(QObject *parent)
   import_clear_dayparts=false;
   import_xml=false;
   import_to_mono=false;
+  import_failed_imports=0;
+  import_send_mail=false;
+  import_mail_per_file=false;
+  import_journal=NULL;
 
   //
   // Open the Database
@@ -105,7 +108,7 @@ MainObject::MainObject(QObject *parent)
   rda=new RDApplication("rdimport","rdimport",RDIMPORT_USAGE,this);
   if(!rda->open(&err_msg)) {
     fprintf(stderr,"rdimport: %s\n",(const char *)err_msg);
-    exit(1);
+    ErrorExit(RDApplication::ExitNoDb);
   }
 
   //
@@ -113,7 +116,7 @@ MainObject::MainObject(QObject *parent)
   //
   if(rda->cmdSwitch()->keys()<2) {
     Log(LOG_ERR,QString().sprintf("\n%s\n",RDIMPORT_USAGE));
-    exit(2);
+    ErrorExit(RDApplication::ExitInvalidOption);
   }
   for(unsigned i=0;i<rda->cmdSwitch()->keys()-2;i++) {
     if(rda->cmdSwitch()->key(i)=="--verbose") {
@@ -132,11 +135,11 @@ MainObject::MainObject(QObject *parent)
       import_cart_number=rda->cmdSwitch()->value(i).toUInt(&ok);
       if((!ok)||(import_cart_number<1)||(import_cart_number>999999)) {
 	Log(LOG_ERR,QString("rdimport: invalid cart number\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       if(import_use_cartchunk_cutid) {
 	Log(LOG_ERR,QString("rdimport: '--to-cart' and '--use-cartchunk-cutid' are mutually exclusive\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       import_single_cart=true;
       rda->cmdSwitch()->setProcessed(i,true);
@@ -144,7 +147,7 @@ MainObject::MainObject(QObject *parent)
     if(rda->cmdSwitch()->key(i)=="--use-cartchunk-cutid") {
       if(import_cart_number!=0) {
 	Log(LOG_ERR,QString("rdimport: '--to-cart' and '--use-cartchunk-cutid' are mutually exclusive\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       import_use_cartchunk_cutid=true;
       rda->cmdSwitch()->setProcessed(i,true);
@@ -153,7 +156,7 @@ MainObject::MainObject(QObject *parent)
       import_cart_number_offset=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid --cart-number-offset\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -173,7 +176,7 @@ MainObject::MainObject(QObject *parent)
       import_startdate_offset=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid startdate-offset\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -181,7 +184,7 @@ MainObject::MainObject(QObject *parent)
       import_enddate_offset=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid enddate-offset\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -193,42 +196,42 @@ MainObject::MainObject(QObject *parent)
       QStringList f0=rda->cmdSwitch()->value(i).split(",");
       if(f0.size()!=2) {
 	Log(LOG_ERR,QString("rdimport: invalid argument to --set-datetimes\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       for(unsigned j=0;j<2;j++) {
 	if((f0[j].length()!=15)||(f0[j].mid(8,1)!="-")) {
 	  Log(LOG_ERR,QString("rdimport: invalid argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned year=f0[j].left(4).toUInt(&ok);
 	if(!ok) {
 	  Log(LOG_ERR,QString("rdimport: invalid year argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned month=f0[j].mid(4,2).toUInt(&ok);
 	if((!ok)||(month>12)) {
 	  Log(LOG_ERR,QString("rdimport: invalid month argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned day=f0[j].mid(6,2).toUInt(&ok);
 	if((!ok)||(day>31)) {
 	  Log(LOG_ERR,QString("rdimport: invalid day argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned hour=f0[j].mid(9,2).toUInt(&ok);
 	if((!ok)||(hour>23)) {
 	  Log(LOG_ERR,QString("rdimport: invalid hour argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned min=f0[j].mid(11,2).toUInt(&ok);
 	if((!ok)||(min>59)) {
 	  Log(LOG_ERR,QString("rdimport: invalid minute argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned sec=f0[j].right(2).toUInt(&ok);
 	if((!ok)||(sec>59)) {
 	  Log(LOG_ERR,QString("rdimport: invalid seconds argument to --set-datetimes\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	import_datetimes[j]=QDateTime(QDate(year,month,day),
 				      QTime(hour,min,sec));
@@ -238,7 +241,7 @@ MainObject::MainObject(QObject *parent)
       }
       if(import_datetimes[0]>=import_datetimes[1]) {
 	Log(LOG_ERR,QString("rdimport: datetime cannot end before it begins\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -246,33 +249,33 @@ MainObject::MainObject(QObject *parent)
       QStringList f0=rda->cmdSwitch()->value(i).split(",");
       if(f0.size()!=2) {
 	Log(LOG_ERR,QString("rdimport: invalid argument to --set-daypart-times\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       for(unsigned j=0;j<2;j++) {
 	if(f0[j].length()!=6) {
 	  Log(LOG_ERR,QString("rdimport: invalid argument to --set-daypart-times\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned hour=f0[j].left(2).toUInt(&ok);
 	if((!ok)||(hour>23)) {
 	  Log(LOG_ERR,QString("rdimport: invalid hour argument to --set-daypart-times\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned min=f0[j].mid(2,2).toUInt(&ok);
 	if((!ok)||(min>59)) {
 	  Log(LOG_ERR,QString("rdimport: invalid minute argument to --set-daypart-times\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	unsigned sec=f0[j].right(2).toUInt(&ok);
 	if((!ok)||(sec>59)) {
 	  Log(LOG_ERR,QString("rdimport: invalid seconds argument to --set-daypart-times\n"));
-	  exit(2);
+	  ErrorExit(RDApplication::ExitInvalidOption);
 	}
 	import_dayparts[j].setHMS(hour,min,sec);
       }
       if(import_dayparts[0]>=import_dayparts[1]) {
 	Log(LOG_ERR,QString("rdimport: daypart cannot end before it begins\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -302,8 +305,16 @@ MainObject::MainObject(QObject *parent)
     if(rda->cmdSwitch()->key(i)=="--metadata-pattern") {
       import_metadata_pattern=rda->cmdSwitch()->value(i);
       if(!VerifyPattern(import_metadata_pattern)) {
-	Log(LOG_ERR,QString("rdimport: invalid metadata pattern\n"));
-	exit(2);
+	Log(LOG_ERR,QString("rdimport: invalid --metadata-pattern\n"));
+	ErrorExit(RDApplication::ExitInvalidOption);
+      }
+      rda->cmdSwitch()->setProcessed(i,true);
+    }
+    if(rda->cmdSwitch()->key(i)=="--output-pattern") {
+      import_output_pattern=rda->cmdSwitch()->value(i);
+      if(!VerifyPattern(import_output_pattern)) {
+	Log(LOG_ERR,QString("rdimport: invalid --output-pattern\n"));
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -315,7 +326,7 @@ MainObject::MainObject(QObject *parent)
       import_persistent_dropbox_id=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid persistent dropbox id\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitNoDropbox);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -323,7 +334,7 @@ MainObject::MainObject(QObject *parent)
       import_create_startdate_offset=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid create-startddate-offset\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       import_create_dates=true;
       rda->cmdSwitch()->setProcessed(i,true);
@@ -333,7 +344,7 @@ MainObject::MainObject(QObject *parent)
       if((!ok) || 
          (import_create_startdate_offset > import_create_enddate_offset )) {
 	Log(LOG_ERR,QString("rdimport: invalid create-enddate-offset\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       import_create_dates=true;
       rda->cmdSwitch()->setProcessed(i,true);
@@ -354,7 +365,7 @@ MainObject::MainObject(QObject *parent)
       import_string_bpm=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid value for --set-string-bpm\n"));
-	exit(255);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -393,7 +404,7 @@ MainObject::MainObject(QObject *parent)
       }
       else {
 	Log(LOG_ERR,"invalid ISRC \""+rda->cmdSwitch()->value(i)+"\"\n");
-	exit(1);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
     }
     if(rda->cmdSwitch()->key(i)=="--set-string-recording-mbid") {
@@ -415,7 +426,7 @@ MainObject::MainObject(QObject *parent)
     if(rda->cmdSwitch()->key(i)=="--set-string-title") {
       if(rda->cmdSwitch()->value(i).isEmpty()) {
 	Log(LOG_ERR,QString("rdimport: title field cannot be empty\n"));
-	exit(255);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       import_string_title=rda->cmdSwitch()->value(i);
       rda->cmdSwitch()->setProcessed(i,true);
@@ -428,12 +439,21 @@ MainObject::MainObject(QObject *parent)
       import_string_year=rda->cmdSwitch()->value(i).toInt(&ok);
       if(!ok) {
 	Log(LOG_ERR,QString("rdimport: invalid value for --set-string-year\n"));
-	exit(255);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
     if(rda->cmdSwitch()->key(i)=="--xml") {
       import_xml=true;
+      rda->cmdSwitch()->setProcessed(i,true);
+    }
+    if(rda->cmdSwitch()->key(i)=="--send-mail") {
+      import_send_mail=true;
+      rda->cmdSwitch()->setProcessed(i,true);
+    }
+    if(rda->cmdSwitch()->key(i)=="--mail-per-file") {
+      import_mail_per_file=true;
+      import_send_mail=true;
       rda->cmdSwitch()->setProcessed(i,true);
     }
   }
@@ -443,29 +463,19 @@ MainObject::MainObject(QObject *parent)
   //
   if(import_datetimes[0].isValid()&&import_clear_datetimes) {
     Log(LOG_ERR,QString("rdimport: --set-datetimes and --clear-datetimes are mutually exclusive\n"));
-    exit(255);
+    ErrorExit(RDApplication::ExitInvalidOption);
   }
   if((!import_dayparts[1].isNull())&&import_clear_dayparts) {
     Log(LOG_ERR,QString("rdimport: --set-daypart-times and --clear-daypart-times are mutually exclusive\n"));
-    exit(255);
+    ErrorExit(RDApplication::ExitInvalidOption);
   }
   if((!import_metadata_pattern.isEmpty())&&import_xml) {
     Log(LOG_ERR,QString().sprintf("rdimport: --metadata-pattern and --xml are mutually exclusive\n"));
-    exit(255);
+    ErrorExit(RDApplication::ExitInvalidOption);
   }
-  /*
-  if((!import_log_directory.isEmpty())&&import_log_filename.isEmpty()) {
-    Log(LOG_ERR,QString().sprintf("rdimport: --log-directory requires --log-filename\n"));
-    exit(255);
-  }
-  if((!import_log_filename.isEmpty())&&import_log_directory.isEmpty()) {
-    Log(LOG_ERR,QString().sprintf("rdimport: --log-filename requires --log-directory\n"));
-    exit(255);
-  }
-  */
   if((!import_log_filename.isEmpty())&&import_log_syslog) {
     Log(LOG_ERR,QString().sprintf("rdimport: --log-filename and --log-syslog are mutually exclusive\n"));
-    exit(255);
+    ErrorExit(RDApplication::ExitInvalidOption);
   }
 
   import_cut_markers=new MarkerSet();
@@ -497,7 +507,7 @@ MainObject::MainObject(QObject *parent)
       if(!import_group->exists()) {
 	Log(LOG_ERR,QString().sprintf("rdimport: invalid group specified\n"));
 	delete import_group;
-	exit(2);
+	ErrorExit(RDApplication::ExitNoGroup);
       }
       import_file_key=i+1;
       i=rda->cmdSwitch()->keys();
@@ -505,13 +515,13 @@ MainObject::MainObject(QObject *parent)
   }
   if(import_group==NULL) {
     Log(LOG_ERR,QString().sprintf("rdimport: invalid group specified\n"));
-    exit(2);
+    ErrorExit(RDApplication::ExitNoGroup);
   }
   if(import_cart_number>0) {
     if(!import_group->cartNumberValid(import_cart_number)) {
       Log(LOG_ERR,QString().sprintf("rdimport: invalid cart number for group\n"));
       delete import_group;
-      exit(2);
+      ErrorExit(RDApplication::ExitInvalidCart);
     }
   }
 
@@ -522,7 +532,7 @@ MainObject::MainObject(QObject *parent)
     if(!SchedulerCodeExists(import_add_scheduler_codes[i])) {
       Log(LOG_ERR,QString().sprintf("rdimport: scheduler code \"%s\" does not exist\n",
 	      (const char *)import_add_scheduler_codes[i].toUtf8()));
-      exit(2);
+      ErrorExit(RDApplication::ExitNoSchedCode);
     }
   }
 
@@ -547,7 +557,7 @@ MainObject::MainObject(QObject *parent)
       }
       else {
 	Log(LOG_ERR,QString("rdimport: invalid normalization level\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -558,7 +568,7 @@ MainObject::MainObject(QObject *parent)
       }
       else {
 	Log(LOG_ERR,QString("rdimport: invalid autotrim level\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -569,7 +579,7 @@ MainObject::MainObject(QObject *parent)
       }
       else {
 	Log(LOG_ERR,QString("rdimport: invalid segue level\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -580,7 +590,7 @@ MainObject::MainObject(QObject *parent)
       }
       else {
 	Log(LOG_ERR,QString("rdimport: invalid segue length\n"));
-	exit(2);
+	ErrorExit(RDApplication::ExitInvalidOption);
       }
       rda->cmdSwitch()->setProcessed(i,true);
     }
@@ -592,7 +602,7 @@ MainObject::MainObject(QObject *parent)
        (rda->cmdSwitch()->key(i).left(2)=="--")) {
       Log(LOG_ERR,QString().sprintf("rdimport: unknown command option \"%s\"\n",
 	      (const char *)rda->cmdSwitch()->key(i)));
-      exit(2);
+      ErrorExit(RDApplication::ExitInvalidOption);
     }
   }
   if(import_to_mono) {
@@ -602,7 +612,7 @@ MainObject::MainObject(QObject *parent)
   //
   // Print Status Messages
   //
-  Log(LOG_INFO,QString("rdimport started\n"));
+  Log(LOG_INFO,QString("rdimport started"));
 
   Log(LOG_INFO,QString().sprintf("RDImport v%s\n",VERSION));
   if(import_to_mono) {
@@ -678,6 +688,10 @@ MainObject::MainObject(QObject *parent)
     Log(LOG_INFO,QString().sprintf(" Using metadata pattern: %s\n",
 				   (const char *)import_metadata_pattern));
   }
+  if(!import_output_pattern.isEmpty()) {
+    Log(LOG_INFO,QString().sprintf(" Using output pattern: %s\n",
+				   (const char *)import_output_pattern));
+  }
   Log(LOG_INFO,QString().sprintf(" Start Date Offset = %d days\n",import_startdate_offset));
   Log(LOG_INFO,QString().sprintf(" End Date Offset = %d days\n",import_enddate_offset));
   if((!import_dayparts[0].isNull())||(!import_dayparts[1].isNull())) {
@@ -703,6 +717,17 @@ MainObject::MainObject(QObject *parent)
   }
   else {
     Log(LOG_INFO,QString(" Broken format workarounds are DISABLED\n"));
+  }
+  if(import_send_mail) {
+    if(import_mail_per_file) {
+      Log(LOG_INFO,QString(" E-mail report per file is ENABLED\n"));
+    }
+    else {
+      Log(LOG_INFO,QString(" Summary e-mail report is ENABLED\n"));
+    }
+  }
+  else {
+    Log(LOG_INFO,QString(" E-mail reporting is DISABLED\n"));
   }
   if(import_create_dates) {
     Log(LOG_INFO,QString(" Import Create Dates mode is ON\n"));
@@ -797,6 +822,11 @@ MainObject::MainObject(QObject *parent)
     }
   }
 
+  //
+  // Start the email journal
+  //
+  import_journal=new Journal(import_mail_per_file);
+
   // 
   // Setup Signal Handling 
   //
@@ -816,11 +846,15 @@ void MainObject::userData()
   //
   // Verify Permissions
   //
-  if(!rda->user()->editAudio()) {
+  if(!rda->user()->createCarts()) {
     Log(LOG_ERR,
-            QString().sprintf("rdimport: user \"%s\" has no edit audio permission\n",
-	    (const char *)rda->user()->name()));
-    exit(256);
+	QString().sprintf("rdimport: user \"%s\" has no Create Carts permission\n",
+			  rda->user()->name().toUtf8().constData()));
+    ErrorExit(RDApplication::ExitNoPerms);
+  }
+
+  if(import_verbose) {
+    printf(" running as user \"%s\"\n",rda->user()->name().toUtf8().constData());
   }
 
   //
@@ -850,7 +884,7 @@ void MainObject::userData()
 
   Log(LOG_INFO,QString("rdimport finished\n"));
 
-  exit(0);
+  NormalExit();
 }
 
 
@@ -965,17 +999,19 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
 	Log(LOG_WARNING,QString().sprintf(
 		" File \"%s\" is not readable or not a recognized format, skipping...\n",
 		(const char *)RDGetBasePart(filename).toUtf8()));
-	delete wavefile;
-	delete wavedata;
-	delete effective_group;
 	if(!import_run) {
-	  exit(0);
+	  NormalExit();
 	}
 	if(!import_temp_fix_filename.isEmpty()) {
-//	  printf("Fixed Name: %s\n",(const char *)import_temp_fix_filename);
 	  QFile::remove(import_temp_fix_filename);
 	  import_temp_fix_filename="";
 	}
+	import_failed_imports++;
+	import_journal->addFailure(effective_group->name(),filename,
+				   tr("unknown/unrecognized file format"));
+	delete wavefile;
+	delete wavedata;
+	delete effective_group;
 	return MainObject::FileBad;
       }
       Log(LOG_WARNING,QString().sprintf("success.\n"));
@@ -985,16 +1021,19 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
       Log(LOG_WARNING,QString().sprintf(
         " File \"%s\" is not readable or not a recognized format, skipping...\n",
         (const char *)RDGetBasePart(filename).toUtf8()));
-      delete wavefile;
-      delete wavedata;
-      delete effective_group;
       if(!import_run) {
-	exit(0);
+	NormalExit();
       }
       if(!import_temp_fix_filename.isEmpty()) {
 	QFile::remove(import_temp_fix_filename);
 	import_temp_fix_filename="";
       }
+      import_failed_imports++;
+      import_journal->addFailure(effective_group->name(),filename,
+				 tr("unknown/unrecognized file format"));
+      delete wavefile;
+      delete wavedata;
+      delete effective_group;
       return MainObject::FileBad;
     }
   }
@@ -1037,6 +1076,9 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
 	      " File \"%s\" has an invalid or out of range Cart Number, skipping...\n",
 	      (const char *)RDGetBasePart(filename).toUtf8()));
       wavefile->closeWave();
+      import_failed_imports++;
+      import_journal->addFailure(effective_group->name(),filename,
+				 tr("invalid/out-of-range cart number"));
       delete wavefile;
       delete wavedata;
       delete effective_group;
@@ -1049,20 +1091,24 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
   if(*cartnum==0) {
     Log(LOG_ERR,QString().sprintf("rdimport: no free carts available in specified group\n"));
     wavefile->closeWave();
-    delete wavefile;
-    delete wavedata;
-    delete effective_group;
+    import_failed_imports++;
+    import_failed_imports++;
     if(import_drop_box) {
       if(!import_run) {
-	exit(0);
+	NormalExit();
       }
       if(!import_temp_fix_filename.isEmpty()) {
 	QFile::remove(import_temp_fix_filename);
 	import_temp_fix_filename="";
       }
+      import_journal->addFailure(effective_group->name(),filename,
+				 tr("no free cart available in group"));
+      delete wavefile;
+      delete wavedata;
+      delete effective_group;
       return MainObject::NoCart;
     }
-    exit(256);
+    ErrorExit(RDApplication::ExitImportFailed);
   }
   if(import_delete_cuts) {
     DeleteCuts(import_cart_number);
@@ -1079,6 +1125,9 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
     cart->addCut(import_format,import_bitrate,import_channels);
   if(cutnum<0) {
     Log(LOG_WARNING,QString().sprintf("rdimport: no free cuts available in cart %06u\n",*cartnum));
+    import_failed_imports++;
+    import_journal->addFailure(effective_group->name(),filename,
+			       tr("no free cut available in cart"));
     delete cart;
     return MainObject::NoCut;
   }
@@ -1140,16 +1189,19 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
     delete cut;
     delete cart;
     wavefile->closeWave();
-    delete wavefile;
-    delete wavedata;
-    delete effective_group;
     if(!import_run) {
-      exit(0);
+      NormalExit();
     }
     if(!import_temp_fix_filename.isEmpty()) {
       QFile::remove(import_temp_fix_filename);
       import_temp_fix_filename="";
     }
+    import_failed_imports++;
+    import_journal->addFailure(effective_group->name(),filename,
+			       tr("corrupt audio file"));
+    delete wavefile;
+    delete wavedata;
+    delete effective_group;
     return MainObject::FileBad;
     break;
   }
@@ -1333,6 +1385,17 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
   else {
     SendNotification(RDNotification::ModifyAction,cart->number());
   }
+
+  if(!import_output_pattern.isEmpty()) {
+    RDLogLine *ll=new RDLogLine(cart->number(),cut->cutNumber());
+    printf("%s\n",
+	   ll->resolveWildcards(import_output_pattern).toUtf8().constData());
+    delete ll;
+  }
+
+  import_journal->
+    addSuccess(effective_group->name(),filename,*cartnum,cart->title());
+
   delete settings;
   delete conv;
   delete cut;
@@ -1347,7 +1410,7 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
     Log(LOG_INFO,QString().sprintf(" Deleted file \"%s\"\n",(const char *)RDGetBasePart(filename).toUtf8()));
   }
   if(!import_run) {
-    exit(0);
+    NormalExit();
   }
   if(!import_temp_fix_filename.isEmpty()) {
     QFile::remove(import_temp_fix_filename);
@@ -1623,6 +1686,13 @@ bool MainObject::FixChunkSizes(const QString &filename)
 bool MainObject::RunPattern(const QString &pattern,const QString &filename,
 			    RDWaveData *wavedata,QString *groupname)
 {
+  //  MAINTAINERS'S NOTE: These mappings must be kept in sync with those
+  //                      of the 'resolvePadFields()' method in
+  //                      'apis/PyPAD/api/PyPAD.py', as well as the
+  //                      'resolveWildcards()' method in the
+  //                      'lib/rdlog_line.cpp' file and the
+  //                      'VerifyPattern()' method in this file.
+
   bool macro_active=false;
   int ptr=0;
   QChar field;
@@ -1823,7 +1893,7 @@ bool MainObject::RunPattern(const QString &pattern,const QString &filename,
 	    }
 	    else {
 	      Log(LOG_ERR,"invalid ISRC \""+value+"\"\n");
-	      exit(1);
+	      ErrorExit(RDApplication::ExitInvalidOption);
 	    }
 	    break;
 
@@ -1922,6 +1992,13 @@ bool MainObject::RunPattern(const QString &pattern,const QString &filename,
 
 bool MainObject::VerifyPattern(const QString &pattern)
 {
+  //  MAINTAINERS'S NOTE: These mappings must be kept in sync with those
+  //                      of the 'resolvePadFields()' method in
+  //                      'apis/PyPAD/api/PyPAD.py', as well as the
+  //                      'resolveWildcards()' method in the
+  //                      'lib/rdlog_line.cpp' file and the
+  //                      'RunPattern()' method in this file.
+
   bool macro_active=false;
   for(int i=0;i<pattern.length();i++) {
     if(pattern.at(i)==QChar('%')) {
@@ -2139,6 +2216,27 @@ void MainObject::Log(int prio,const QString &msg) const
       fflush(stdout);
     }
   }
+}
+
+
+void MainObject::NormalExit() const
+{
+  if((import_journal!=NULL)&&(import_send_mail)) {
+    import_journal->sendAll();
+  }
+  if(import_failed_imports>0) {
+    exit(RDApplication::ExitImportFailed);
+  }
+  exit(RDApplication::ExitOk);
+}
+
+
+void MainObject::ErrorExit(RDApplication::ExitCode code) const
+{
+  if((import_journal!=NULL)&&(import_send_mail)) {
+    import_journal->sendAll();
+  }
+  exit(code);
 }
 
 

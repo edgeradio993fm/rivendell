@@ -20507,3 +20507,156 @@
 	'Edit Service dialog in rdadmin(1).
 	* Renamed the 'Note Cart String' controls to 'Insert Marker String'
 	in the 'Edit Service dialog in rdadmin(1).
+2020-10-27 Fred Gleason <fredg@paravelsystems.com>
+	* Refactored the 'Run Script' ['RN'] RML to invoke scripts via
+	the system shell.
+2020-10-27 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the runuser(1) dependency.
+2020-10-29 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDFormPost::authenticate()' method.
+2020-10-30 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a regression in 'RDFormPost' that broke file control
+	processing.
+	* Added a 'put' section to the WebGet interface.
+2020-10-31 Fred Gleason <fredg@paravelsystems.com>
+	* Added an '--output-pattern' switch to rdimport(1).
+2020-10-31 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDApplication::ExitCode'.
+	* Implemented 'RDApplication::ExitCode' in rdimport(1).
+	* Implemented 'RDApplication::ExitCode' in rdlogmanager(1).
+	* Implemented 'RDApplication::ExitCode' in rdservice(8).
+2020-11-01 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a regression in rdadmin(1) that caused corruption of the
+	'Auto-Correct Duplicate Cart Title' control.
+2020-11-01 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed bugs in rdimport(1) that caused incorrect exit codes to
+	be emitted when a non-existent group was specified.
+2020-11-01 Fred Gleason <fredg@paravelsystems.com>
+	* Modified Webget to issue all error messages as mimetype
+	'text/html'.
+2020-11-01 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int3.
+2020-11-02 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'donut-spinner' indicator to Webget.
+2020-11-05 Fred Gleason <fredg@paravelsystems.com>
+	* Added logging for failed PAM authentication in
+	'RDPam::authenticate()'.
+2020-11-06 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in Webget that caused authentication to fail
+	when using PAM.
+2020-11-06 Fred Gleason <fredg@paravelsystems.com>
+	* Consolidated ticket processing operations in new
+	'RDUser::createTicket()' and 'RDUser::ticketIsValid()' methods.
+2020-11-06 Fred Gleason <fredg@paravelsystems.com>
+	* Modified Webget to use tickets for authenticating media transfer
+	requests.
+2020-11-06 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int4.
+2020-11-07 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the quotation marks around the title field in the
+	put response dialog in WebGet.
+2020-11-07 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in the Webget service that caused it to ignore
+	the value of the 'Default Channels' setting in rdadmin(1).
+2020-11-09 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int5.
+2020-11-14 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdmonitor(1) that caused false indications of
+	a failed audio store when used with autofs(8).
+2020-11-14 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDProcess::setProcessEnvironment()' method.
+	* Fixed a bug in 'RDSvc::create()' that failed to propagate
+	the 'SERVICES.SUB_EVENT_INHERITANCE', 'SERVICES.TFC_PREIMPORT_CMD',
+	'SERVICES.TFC_LABEL_CART', 'SERVICES.TFC_TRACK_CART',
+	'SERVICES.TFC_BREAK_STRING', 'SERVICES.TFC_TRACK_STRING',
+	'SERVICES.MUS_PREIMPORT_CMD, 'SERVICES.MUS_LABEL_CART',
+	'SERVICES.MUS_TRACK_CART', 'SERVICES.MUS_BREAK_STRING',
+	'SERVICES.MUS_TRACK_STRING', 'SERVICES.PROGRAM_CODE' and
+	'SERVICES.DESCRIPTION' fields when using an exemplar.
+2020-11-15 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdlogmanager(1) that, after detection of a
+	linker error, caused subsequent linker errors to fail to be
+	appended to the error report.
+	* Fixed a bug in rdlogmanager(1) that caused second and subsequent
+	inline Track Markers or Markers within an Event to fail to be
+	inserted Relative Position mode.
+2020-11-15 Fred Gleason <fredg@paravelsystems.com>
+	* Added the name of the import file to schedule import failure
+	reports.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Revised the 'Managing Services' section of the Operations
+	Guide.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Modified the 'Encoder Profiles' dialog in rdadmin to left-justify
+	the 'Name' column.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Modified the Webget service to require the 'Create Carts'
+	priviledge in order to upload content.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Rewrote the 'Webget' chapter of the Operations Guide to conform
+	to changes in Webget.
+	* Added a 'Configuring Webget' section to the Operations Guide.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the 'Cart Data Dump (fixed width)' from the
+	Operations Guide.
+2020-11-16 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int6.
+2020-11-18 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDSendMail()' function in 'lib/rdsendmail.[cpp|h]'.
+2020-11-18 Fred Gleason <fredg@paravelsystems.com>
+	* Implemented support for multi-byte UTF-8 characters for the
+	display-name component of e-mail addresses in 'RDSendMail()'.
+2020-11-18 Fred Gleason <fredg@paravelsystems.com>
+	* Added a '--dry-run' switch to the 'sendmail_test' test harness.
+2020-11-18 Fred Gleason <fredg@paravelsystems.com>
+	* Added a '--body-file' switch to the 'sendmail_test' test harness.
+2020-11-22 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'SYSTEM.ORIGIN_EMAIL_ADDRESS' field to the database.
+	* Added a 'GROUPS.NOTIFY_EMAIL_ADDRESS' field to the database.
+	* Incremented the database version to 344.
+	* Added an 'Origin E-Mail Address' control to the 'System-Wide
+	Settings' dialog in rdadmin(1).
+	* Added a 'Notification E-Mail Addresses' control to the 'Group'
+	dialog in rdadmin(1).
+2020-11-23 Fred Gleason <fredg@paravelsystems.com>
+	* Added '--send-mail' and '--mail-per-file' options to rdimport(1).
+2020-11-23 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'DROPBOXES.SEND_EMAIL' field to the database.
+	* Incremented the database version to 345.
+	* Added 'RDDropbox::sendEmail()' and 'RDDropbox::setSendEmail()'
+	methods.
+	* Added a 'Send e-mail reports' checkbox to the 'Dropbox
+	Configuration' dialog in rdadmin(1).
+2020-11-23 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdimport(1) that could cause generation of
+	mail reports to be bypassed.
+2020-11-23 Fred Gleason <fredg@paravelsystems.com>
+	* Added a '--ticket=' option to rdimport(1).
+2020-11-24 Fred Gleason <fredg@paravelsystems.com>
+	* Documented user-facing changes to the 'System-Wide Settings'
+	dialog in rdadmin(1) in the Operations Guide.
+2020-11-24 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'E-Mail Address', 'Phone Number' and 'Local Auth' columns
+	to the 'Users' list in the 'Rivendell User List' dialog in rdadmin(1).
+2020-11-24 Fred Gleason <fredg@paravelsystems.com>
+	* Removed the 'USERS.ADMIN_USERS_PRIV' field from the database.
+	* Added a 'USERS.ADMIN_RSS_PRIV' field to the database.
+	* Incremented the database version to 346.
+	* Added 'RDUser:adminRss()' and 'RDUser::setAdminRss()' methods.
+	* Added an 'Administer RSS Feeds' checkbox to the 'Administrative
+	Rights' section of the 'User' dialog in rdadmin(1).
+2020-11-24 Fred Gleason <fredg@paravelsystems.com>
+	* Documented user-facing changes to the 'Rivendell Group List' and
+	'Group' dialogs in rdadmin(1) in the Operations Guide.
+2020-11-29 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdadmin(1) that caused new passwords to be
+	truncated to 16 characters.
+2020-11-29 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdadmin(1) that caused to incorrect user type
+	icon to be displayed in the 'Rivendell User List' dialog after
+	modifying a user.
+2020-11-29 Fred Gleason <fredg@paravelsystems.com>
+	* Documented the 'Send e-mail reports' checkbox in the 'Dropbox
+	Configuration' dialog in rdadmin(1) in the Operations Guide.
+2020-11-29 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.4.1int7.

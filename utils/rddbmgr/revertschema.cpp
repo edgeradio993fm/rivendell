@@ -41,6 +41,42 @@ bool MainObject::RevertSchema(int cur_schema,int set_schema,QString *err_msg)
 
 
   //
+  // Revert 346
+  //
+  if((cur_schema==346)&&(set_schema<cur_schema)) {
+    DropColumn("USERS","ADMIN_RSS_PRIV");
+
+    sql=QString("alter table USERS add column ")+
+      "ADMIN_USERS_PRIV enum('N','Y') not null default 'N' "+
+      "after ADMIN_CONFIG_PRIV";
+    if(!RDSqlQuery::apply(sql,err_msg)) {
+      return false;
+    }
+
+    WriteSchemaVersion(--cur_schema);
+  }
+
+  //
+  // Revert 345
+  //
+  if((cur_schema==345)&&(set_schema<cur_schema)) {
+    DropColumn("DROPBOXES","SEND_EMAIL");
+
+    WriteSchemaVersion(--cur_schema);
+  }
+
+  //
+  // Revert 344
+  //
+  if((cur_schema==344)&&(set_schema<cur_schema)) {
+    DropColumn("GROUPS","NOTIFY_EMAIL_ADDRESS");
+    DropColumn("SYSTEM","ORIGIN_EMAIL_ADDRESS");
+
+
+    WriteSchemaVersion(--cur_schema);
+  }
+
+  //
   // Revert 343
   //
   if((cur_schema==343)&&(set_schema<cur_schema)) {
