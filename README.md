@@ -2,44 +2,12 @@
 
 Welcome to the github for the Rivendell on ARM project. This release has no affiliation with the official Rivendell software. We aim to provide a stable release for those who wish to use the software on ARM based hardware, such as the Raspberry Pi, Pinebook Pro, Rock64 and other single board computers. We will be merging as much of the official code as possible. Most of the changes in this repository are about running Rivendell reliably on ARM based hardware using Debian Buster. The hardware we use to test is currently the Raspberry Pi 3B+, Raspberry Pi 4B and the Pine 64 Pinebook Pro. The packages and images are provided as is and come with no guarenteed or warranty.
 
-Please see the [releases](https://github.com/edgeradio993fm/rivendell/releases) page for the latest images and updates.
+Please see the [wiki](https://github.com/edgeradio993fm/rivendell/wiki) page for the latest install guides and updates.
 
-#### If you would like to get updates via the APT package manager
-
-Run this command to download and install the repo GPG Key.
-```bash
-wget -qO - https://7edg.org/repo/rivendellpi.key | sudo apt-key add -
-```
-Run this command to add our repository to your /ect/apt/sources.list file.
-```bash
-sudo echo "deb https://7edg.org/repo buster main" | sudo tee -a /etc/apt/sources.list
-```
-We do not recommend installing Rivendell directly from our repository as you will have to manually set a number of configuration options such as the mysql database and audio storage. Use the below automated install to do the initial setup and then update your Rivendell install using **sudo apt update && sudo apt --only-upgrade install rivendell -y** when required.
-***
-
-### Installing Rivendell From Scratch
-
-Installing a fresh copy of Rivendell on a Raspbian and Debian based system it isn't too hard. We have made an automated install script that will configure Rivendell on a Debian Buster based system using these archictectures: **armhf**, **arm64** and **amd64**. The install will use current sudo user, configure audio storage and set up a blank database. This will also install the required dependancies to build Rivendell from source should the need occour. This process will also install our repository for future updates and the [Debian Multimeida Packages]( https://deb-multimedia.org) repository, as some required audio codecs are no longer included in Debian Buster by default.
-
-Make sure you have **wget** and **curl** installed before running the install process.
-
-Run this command in a terminal to start the automated install process.
-```bash
-curl -L https://7edg.org/rdinstall/install.sh | sudo bash
-```
-Post install you should run **rdadmin** to generate/configure your host settings.
-***
-
-### A Quick Note For Those Running Debian and Ubuntu Based Distributions
-
-**Debian**  
-This forked repo will compile and run fine on other Debian based systems. We've have added an amd64 package to our repository for Debian Buster. You can install it using the above method. While it has been sucsessfully tested on our end, there may still be a few bugs. 
+### A Quick Note For Those Running Ubuntu Based Distributions 
 
 **Ubuntu**  
-There is no support for Ubuntu based systems and the install process will fail. You can get things to work by adding the Debian Repositories to your Ubuntu system. However, this is very much not recommended.
-
-If you have any feedback or encounter bugs, please let us know via [tech@edgeradio.org.au](mailto:tech@edgeradio.org.au).
-***
+There is currently no support for Ubuntu based systems and the install process will fail. You can get things to work by adding the Debian Repositories to your Ubuntu system. However, this is very much not recommended. We currently target Debian (Buster) Stable OS as it is more widly supported by ARM devices at this time.
 
 ### Let Us Know If You Use Rivendell On Your Raspberry Pi
 If you find using Rivendell on your Raspberry Pi is working for you, please let us know via email. We're keen to complile a list of stations that run Pi based Rivendell systems. Doesn't matter if you only use them as workstations or full on setups. Drop us a line and share your experence.
