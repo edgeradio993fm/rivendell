@@ -51,6 +51,7 @@
       <Filename>rivendell-rmlsend.desktop</Filename>
       <Filename>rivendell-rddgimport.desktop</Filename>
       <Filename>rivendell-rddiscimport.desktop</Filename>
+      <Filename>rivendell-rdmonitor.desktop</Filename>
     </Include>
   </Menu>
 </Menu>
