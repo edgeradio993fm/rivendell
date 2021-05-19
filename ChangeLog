@@ -20686,3 +20686,71 @@
 	* Incremented the package version to 3.4.1int9.
 2020-12-12 Fred Gleason <fredg@paravelsystems.com>
 	* Incremented the package version to 3.5.0.
+2020-12-24 Fred Gleason <fredg@paravelsystems.com>
+	* Modified rdimport(1) so as to send e-mail reports to the address
+	of the current Rivendell user in addition to the group's
+	Notification E-Mail Address.
+	* Modified the Webget service so as to send e-mail reports to the
+	address	of the current Rivendell user in addition to the group's
+	Notification E-Mail Address.
+2020-12-24 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.5.0int0.
+2020-12-24 Patrick Linstruth <patrick@deltecent.com>
+	* Fixed title separation in rdlogmanager(1) scheduler.
+	* Added a 'STACK_LINES.TITLE' field to the database.
+	* Incremented the database version to 347.
+2020-12-24 Fred Gleason <fredg@paravelsystems.com>
+	* Modified the schema map in rddbmgr(8) to position schema update
+	347 as part of v3.6.x.
+2021-04-05 David Klann <dklann@broadcasttool.com>
+	* Fixed bug in lib/rdwavefile.cpp that copied CartChunk Cut ID
+	past the end of the first "NULL" character.
+2021-04-05 Fred Gleason <fredg@paravelsystems.com>
+	* Added the value of the detected CartChunk CutID to the error
+	message	generated when rejecting said CutID as invalid when using
+	the '--use-cartchunk-cutid' switch in rdimport(1).
+	* Added code to print the value of the detected CartChunk CutID
+	when using both the '--use-cartchunk-cutid' and '--verbose' flags
+	in rdimport(1).
+2021-04-05 Eric Adler <tonsofpcs@gmail.com>
+	* Created pypad_ino713_tcp based upon pypad_ino713, converting from
+	UDP to TCP. Added an adjustable delay to account for broadcast air
+	delays.
+	* Created pypad_nautel based upon pypad_ino713_tcp, including RDS
+	parameters from documentation. Includes delay.
+2021-04-05 Fred Gleason <fredg@paravelsystems.com>
+	* Integrated the 'pypad_ino713_tcp' and 'pypad_nautel' PyPAD
+	scripts into the build system.
+2021-04-06 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdairplay(1) that caused the Talk Timer to
+	fail to be populated when adding new carts to a log.
+2021-04-06 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in the Cart Selector Dialog that made it impossible
+	to enter an apostrophe character in the filter search line.
+2021-04-06 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdimport(1) where the title of an existing cart
+	would be overwritten with a default title even when no title
+	was found in the file metadata.
+2021-04-06 Fred Gleason <fredg@paravelsystems.com>
+	* Renamed the 'RadioTraffic.com Traffic Reconciliation' to
+	'Original RadioTraffic.com Traffic Reconciliation (DEPRECATED)'
+	in rdadmin(1).
+	* Added a new 'RadioTraffic.com Traffic Reconciliation' report.
+2021-04-08 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'RDFlacDecode' that caused conversion of files
+	with names containing non-ASCII characters to fail.
+2021-04-12 David Klann <dklann@broadcasttool.com>
+	* Changed the way in which the VU Meter UDP port is chosen. One
+	can now specify the base port number and the maximum number of UDP
+	ports to consider when caed(8) sets up the VU meter port.
+2021-04-14 Fred Gleason <fredg@paravelsystems.com>
+	* Documented the 'MeterPortBaseNumber=' and 'MeterPointRange='
+	directives in the rd.conf(5) man page.
+2021-05-07 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in rdadmin(1) where clicking the 'OK' button
+	in the 'Edit Switcher' dialog would cause an error dialog to appear
+	with a 'primary serial device not active' warning. The following
+	devices are affected: 'Local GPIO', 'Local Audio Adapter',
+	'Logitek vGuest', 'Livewire LWRP Audio', and 'Kernel GPIO'.
+2021-05-15 Fred Gleason <fredg@paravelsystems.com>
+	* Incremented the package version to 3.6.0.

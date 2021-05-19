@@ -1039,13 +1039,6 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
 	effective_group=new RDGroup(import_group->name());
       }
     }
-
-    //
-    // Ensure that we have at least a Title
-    //
-    if(wavedata->metadataFound()&&wavedata->title().isEmpty()) {
-      wavedata->setTitle(effective_group->generateTitle(filename));
-    }
   }
 
   //
@@ -1060,15 +1053,15 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
   //
   if(import_use_cartchunk_cutid||found_cart) {
     *cartnum=0;
+    Log(LOG_INFO," found CartChunk CutID \""+wavedata->cutId()+"\"\n");
     *cartnum=wavedata->cutId().toUInt(&ok);
-    //sscanf(wavedata->cutId(),"%u",cartnum);
     (*cartnum)+=import_cart_number_offset;
     if((!ok)||(*cartnum==0)||(*cartnum>999999)||
        (effective_group->enforceCartRange()&&
 	(!effective_group->cartNumberValid(*cartnum)))) {
-      Log(LOG_WARNING,QString().sprintf(
-	      " File \"%s\" has an invalid or out of range Cart Number, skipping...\n",
-	      RDGetBasePart(filename).toUtf8().constData()));
+      Log(LOG_WARNING,QString().sprintf(" File \"%s\" has an invalid or out of range Cart Number \"%s\", skipping...\n",
+				RDGetBasePart(filename).toUtf8().constData(),
+			       	wavedata->cutId().toUtf8().constData()));
       wavefile->closeWave();
       import_failed_imports++;
       import_journal->addFailure(effective_group->name(),filename,
@@ -1078,6 +1071,21 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
       delete effective_group;
       return MainObject::FileBad;
     }
+  }
+
+  //
+  // Ensure that we have a valid title
+  //
+  bool cart_exists=false;
+  if(*cartnum!=0) {
+    cart_exists=RDCart::exists(*cartnum);
+  }
+  //
+  // If the cart already exists and no title was found in metadata,
+  // then keep the existing title. Otherwise, generate a default title.
+  //
+  if((!cart_exists)&&wavedata->metadataFound()&&wavedata->title().isEmpty()) {
+    wavedata->setTitle(effective_group->generateTitle(filename));
   }
 
   //
@@ -1243,6 +1251,7 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
     wavedata->setStartPos(-1);
     wavedata->setEndPos(-1);
   }
+
   if(cart_created) {
     cart->setMetadata(wavedata);
   }
@@ -1252,7 +1261,7 @@ MainObject::Result MainObject::ImportFile(const QString &filename,
   if(cut->description().isEmpty()) {      // Final backstop, so we don't end up
     cut->setDescription(cart->title());   // with an empty description field.
   }
-  if(!import_metadata_pattern.isEmpty()) {
+  if((!import_metadata_pattern.isEmpty())&&(!wavedata->title().isEmpty())) {
     cart->setTitle(wavedata->title());
   }
   if(import_startdate_offset!=0) {
