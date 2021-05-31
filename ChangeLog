@@ -20754,3 +20754,17 @@
 	'Logitek vGuest', 'Livewire LWRP Audio', and 'Kernel GPIO'.
 2021-05-15 Fred Gleason <fredg@paravelsystems.com>
 	* Incremented the package version to 3.6.0.
+2021-05-28 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a use-after-delete bug in rdimport(1) that could cause
+	a segfault when the '--fix-broken-formats' switch was given.
+2021-05-28 Fred Gleason <fredg@paravelsystems.com>
+	* Added syslog DEBUG messages around the start/stop of ephemeral
+	processes in rdservice(8).
+	* Added an '--initial-maintenance' switch to rdservice(8).
+2021-05-28 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RDProcess::prettyCommandString()' method.
+2021-05-28 Fred Gleason <fredg@paravelsystems.com>
+	* Added an '--force-system-maintenance' switch to rdservice(8).
+2021-05-28 Fred Gleason <fredg@paravelsystems.com>
+	* Modified rdmaint(8) to enable it to operate even when
+	the Rivendell services are not running.
