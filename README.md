@@ -4,11 +4,16 @@ Welcome to the github for the Rivendell on ARM project. This release has no affi
 
 #### Please see the [wiki](https://github.com/edgeradio993fm/rivendell/wiki) page for the latest install guides and updates.
 
-### A Quick Note For Those Running Ubuntu Based Distributions 
+***
+### Latest Packages Avaliable
+##### ARMHF
+[![Latest version of 'rivendell' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/7edg/rivendell-arm/deb/rivendell/latest/a=armhf;d=debian%252Fany-version;t=binary/?render=true&show_latest=true)](https://cloudsmith.io/~7edg/repos/rivendell-arm/packages/detail/deb/rivendell/latest/a=armhf;d=debian%252Fany-version;t=binary/)
+##### ARM64
+[![Latest version of 'rivendell' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/7edg/rivendell-arm/deb/rivendell/latest/a=arm64;d=debian%252Fany-version;t=binary/?render=true&show_latest=true)](https://cloudsmith.io/~7edg/repos/rivendell-arm/packages/detail/deb/rivendell/latest/a=arm64;d=debian%252Fany-version;t=binary/)
+##### AMD64
+[![Latest version of 'rivendell' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/7edg/rivendell-arm/deb/rivendell/latest/a=amd64;d=debian%252Fany-version;t=binary/?render=true&show_latest=true)](https://cloudsmith.io/~7edg/repos/rivendell-arm/packages/detail/deb/rivendell/latest/a=amd64;d=debian%252Fany-version;t=binary/)
 
-**Ubuntu**  
-There is currently no support for Ubuntu based systems and the install process will fail. You can get things to work by adding the Debian Repositories to your Ubuntu system. However, this is very much not recommended. We currently target Debian (Buster) Stable OS as it is more widly supported by ARM devices at this time.
-
+***
 ### Let Us Know If You Use Rivendell On Your Raspberry Pi
 If you find using Rivendell on your Raspberry Pi is working for you, please let us know via email. We're keen to complile a list of stations that run Pi based Rivendell systems. Doesn't matter if you only use them as workstations or full on setups. Drop us a line and share your experence.
 
